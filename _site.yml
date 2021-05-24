@@ -1,11 +1,13 @@
-name: "MyLabJournal"
+name: "Apostilas de Estatística"
 navbar:
-  title: "MyLabJournal"
+  title: 
   left:
-    - text: "Home"
+    - text: "Sobre"
       href: index.html
-    - text: "Journal"
+    - text: "R"
+      href: apostilaR.html
+    - text: "Estatistica Básica"
+      href: novo.html
+    - text: "Aprendizagem Estatística"
       href: Journal.html
-    - text: "Links"
-      href: Links.html
 output_dir: "docs"
