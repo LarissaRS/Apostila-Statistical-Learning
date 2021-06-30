@@ -8,6 +8,6 @@ navbar:
       href: apostilaR.html
     - text: "Estatistica Básica"
       href: novo.html
-    - text: "Aprendizagem Estatística"
+    - text: "Statistical Learning"
       href: Journal.html
 output_dir: "docs"

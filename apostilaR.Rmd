@@ -1,5 +1,5 @@
 ---
-title: "Journal"
+title: "Introdução ao R"
 output:
   html_document:
     toc: true
@@ -14,18 +14,114 @@ output:
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
-IMPORTANT: You can delete everything in here and start fresh. You might want to start by not deleting anything above this line until you know what that stuff is doing.
+&nbsp;
+
+&nbsp;
+
+Texto introdutorio
+
+# Como baixar e instalar o programa R e RStudio
+
+&nbsp;
+
+* *Windows*
+
+  + Baixar e instalar o R
+
+1. Acesse [https://cran.r-project.org/bin/windows/base/](https://cran.r-project.org/bin/windows/base/) e clique em “Download R 4.0.4 for Windows”.
+
+<div style="float:center;max-width: 80%; max-height: 95%;" markdown="1"> ![](images/R000.jpg) 
+</div> 
+
+2. Localize o arquivo baixado em sua máquina e dê um duplo clique no ícone para iniciar a instalação. 
+	
+<div style="float:center;max-width: 30%; max-height: 30%;" markdown="1"> ![](images/R00.jpg) 
+</div> 
+
+3. Clique em “Executar”.
+
+<div style="float:center;max-width: 50%; max-height: 50%;" markdown="1"> ![](images/R0.jpg) 
+</div> 
+
+4. Mantenha a opção de idioma clicando em “OK”.
+
+<div style="float:center;max-width: 50%; max-height: 50%;" markdown="1"> ![](images/R1.jpg) </div> 
+
+5. Clique em “Próximo” nas duas janelas seguintes.
+
+<div style="float:center;max-width: 50%; max-height: 50%;" markdown="1"> ![](images/R3.jpg) </div> 
+
+<div style="float:center;max-width: 50%; max-height: 50%;" markdown="1"> ![](images/R4.jpg) </div> 
+
+6. Verifique qual é o tipo do seu sistema (32 ou 64 bits) e deixe selecionada apenas o tipo correto. Clique em “Próximo”.
+
+<div style="float:center;max-width: 50%; max-height: 50%;" markdown="1"> ![](images/R5.jpg) </div> 
+
+7.	Mantenha as opções selecionadas  e clique em “Próximo” nas duas janelas seguintes.
+
+<div style="float:center;max-width: 50%; max-height: 50%;" markdown="1"> ![](images/R6.jpg) </div> 
+
+<div style="float:center;max-width: 50%; max-height: 50%;" markdown="1"> ![](images/R7.jpg) </div> 
+
+8. Aguarde a instalação.
+
+<div style="float:center;max-width: 50%; max-height: 50%;" markdown="1"> ![](images/R8.jpg) </div> 
+
+9.  Por fim, clique em “Concluir”.  
+
+<div style="float:center;max-width: 50%; max-height: 45%;" markdown="1"> ![](images/R9.jpg) </div> 
+
+&nbsp;
+
+&nbsp;  
+
+  + Baixar a instalar o RSudio  
+
+1. Acesse [https://www.rstudio.com/products/rstudio/download/#download](https://www.rstudio.com/products/rstudio/download/#download), desça até a parte do site que segue na imagem abaixo. Clique em "DOWNLOAD RSTUDIO FOR WINDOWS"
+
+<div style="float:center;max-width: 100%; max-height: 100%;" markdown="1"> ![](images/RS0.jpg) 
+</div> 
+
+2. Localize o arquivo baixado em sua máquina e dê um duplo clique no ícone para iniciar a instalação. 
+
+<div style="float:center;max-width: 30%; max-height: 30%;" markdown="1"> ![](images/RS1.jpg) 
+</div> 
+
+3. Clique em “Próximo” nas duas janelas seguintes.  
+
+<div style="float:center;max-width: 50%; max-height: 50%;" markdown="1"> ![](images/RS2.jpg) 
+</div> 
+
+4. Clique em "Instalar" e aguarde. Caso a segunda janela não feche sozinha, clique em "Próximo"
+
+<div style="float:center;max-width: 50%; max-height: 50%;;" markdown="1"> ![](images/RS4.jpg) 
+</div> 
+
+5. Por fim, clique em "Concluir"
+
+<div style="float:center;max-width: 50%; max-height: 50%;" markdown="1"> ![](images/RS6.jpg) 
+</div> 
+
+6. Ao abrir o R-studio, você verá a seguinte tela com as seguintes partições:  
+
+<div style="float:center;max-width: 100%; max-height: 100%;" markdown="1"> ![](images/R10.jpg) 
+</div>  
+
+A primeira partição é o “Script”, onde digitaremos os códigos que serão salvos; na segunda temos o “Console”, onde são exibidas as mensagens de erro, alerta, resultados de códigos, entre outros, nele também podemos digitar e rodar os códigos, mas estes não serão salvos; no terceiro quadro temos como uma opção o  “Enviroment”, que mostra onde os objetos do código são armazenados; no quarto e último quadro temos as opções “File”, “Plots”, “Help” e ”Viewer”, o Help é uma ferramenta que pode nos ajudar muito.  Para mais detalhes acesse https://rstudio.com/resources/cheatsheets/  e procure por “RStudio IDE Cheatsheet”.
 
 
-This is an .Rmd file. It is plain text with special features. Any time you write just like this, it will be compiled to normal text in the website. If you put a \# in front of your text, it will create a top level-header.
+&nbsp;
 
-# My first post
+&nbsp;
 
-2018 | 7 | 23 Last compiled: `r Sys.Date()`
+* *Linux*
 
-Notice that whatever you define as a top level header, automatically gets put into the table of contents bar on the left. 
+&nbsp;
 
-## Second level header
+&nbsp;
+* *MacOS*
+
+## Primeiros passos
 
 You can add more headers by adding more hashtags. These won't be put into the table of contents
 
@@ -123,6 +219,6 @@ print(a)
 
 ```
 
-# Replace this with problem 4
+# Referência
 
-And keep going. Try to solve the problems with different scripts that provide the same solution. Good luck, Happy coding.
+Disponível em: [https://me115-unicamp.github.io/about/](https://me115-unicamp.github.io/about/)
