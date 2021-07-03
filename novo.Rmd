@@ -18,112 +18,71 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 &nbsp;
 
-#	Conceitos estatísticos essenciais 
-##	Estimadores
-##	Regressão linear simples 
-##	Teste de hipótese
-##	Máxima verossimilhança
-##	Regressão logística
-##	Regressão de Cox
+# Introdução
+# Analise descritiva
+# Probabilidade
+# Inferência
 
-## Second level header
+# Análise de Regressão
 
-You can add more headers by adding more hashtags. These won't be put into the table of contents
+## Introdução/Motivação
 
-### third level header
+Os métodos de análise de regressão formam um conjunto de poderosas ferramentas estatisticas, que estudam a relação entre duas ou mais variaveis e também fazer predições sobre essa relação. Por ser de facil interpretação, essas ferramentas podem se aplicar nas mais diversas àreas e situações, como por exemplo: faixa salarial e nível de educação, consumo de açúcar e percentual de gordura, quantidade de fertilizante e crescimento da planta, quantidade gasta em publicidade e quantidade de vendas de um produto, consumo de contéudo na TV e faixa etária, etc. 
 
-Here's an even lower level header
+O termo regressão foi criado por Francis Galton no século 19 durante seu estudo sobre a relação entre a altura de pais e filhos, desenvolvido no artigo (*Regression Toward Mediocrity in Hereditary Stature*)[https://galton.org/essays/1880-1889/galton-1886-jaigi-regression-stature.pdf]. Hoje aplicamos estas tecnicas com o apoio da programação, aqui faremos uso do software RStudio.  
 
-# My second post (note the order)
+### Regressão Linear Simples
 
-2018 | 7 | 23 Last compiled: `r Sys.Date()`
+ + Modelo 
+ + Estimação dos parâmetros
+ + Análise de Variância
+ + Intervalos de confiança
+ + Teste de Hipótese
+ + Predição
+ + Resíduos *Openintro
+ + Diagnostico
+ + Transformações
 
-I'm writing this tutorial going from the top down. And, this is how it will be printed. So, notice the second post is second in the list. If you want your most recent post to be at the top, then make a new post starting at the top. If you want the oldest first, do, then keep adding to the bottom
+### Regressão Linear Multipla
+ 
+ + Forma matricial
+ + Estimação dos parâmetros
+ + Análise de Variância
+ + Predição
+ + Teste de Hipótese
+ + Intervalo de Confiança
 
-# Adding R stuff
+Soma extra de quadrados(?)  
+Coef de determinação parcial (?)  
+Reg multi padronizada (?)  
+Multicolineariedade(?)  
+Medidas de influência e Alavancagem (?) *Caio  
 
-So far this is just a blog where you can write in plain text and serve your writing to a webpage. One of the main purposes of this lab journal is to record your progress learning R. The reason I am asking you to use this process is because you can both make a website, and a lab journal, and learn R all in R-studio. This makes everything really convenient and in the sam place. 
+#### Regressão Polinomial
+ 
+Regressão com intervenção (?)  
+Região de confiança (?)  
+Teste de Hip Linear (?)  
 
-So, let's say you are learning how to make a histogram in R. For example, maybe you want to sample 100 numbers from a normal distribution with mean = 0, and standard deviation =1, and then you want to plot a histogram. You can do this right here by using an r code block, like this:
+### Seleção de modelos
 
-```{r}
-samples <- rnorm(100, mean=0, sd=1)
-hist(samples)
-```
-
-When you knit this R Markdown document, you will see that the histogram is printed to the page, along with the R code. This document can be set up to hide the R code in the webpage, just delete the comment (hashtag), from the cold folding option in the yaml header up top. For purposes of letting yourself see the code, and me see the code, best to keep it the way that it is. You learn all of these things and more can be customized in each R code block.
-
-# The big idea
-
-Use this lab journal to record what you do in R. This way I will be able to see what you are doing and help you along the way. You will also be creating a repository of all the things you do. You can make posts about everything. Learning specific things in R (project unrelated), and doing things for the project that we will discuss at the beginning of the Fall semester. You can get started now by fiddling around with googling things, and trying stuff out in R. I've placed some helpful starting links in the links page on this website
-
-# What can you do right now by yourself?
-
-It's hard to learn programming when you don't have specific problems that you are trying to solve. Everything just seems abstract.
-
-I wrote an [introductory programming book that introduces R](https://crumplab.github.io/programmingforpsych/), and gives some [concrete problems for you to solve](https://crumplab.github.io/programmingforpsych/programming-challenges-i-learning-the-fundamentals.html). 
-
-To get the hang of journaling and solving the problems to learn programming, my suggestion is that you use this .Rmd file to solve the problems. It would look like this:
-
-# Problem 1
-
-Do simple math with numbers, addition, subtraction, multiplication, division
-
-```{r}
-1+2
-2*5
-5/3
-(1+6+4)/5
-
-```
-
-# Problem 2
-
-Put numbers into variables, do simple math on the variables
-
-```{r}
-a<-1
-b<-2
-a+b
-
-d<-c(1,2,3)
-e<-c(5,6,7)
-d+e
-d*e
-d/e
-
-```
-
-# Problem 3
-
-Write code that will place the numbers 1 to 100 separately into a variable using for loop. Then, again using the seq function.
-
-```{r}
-# for loop solution
-# i becomes the number 1 to 100 at each step of the loop
+Regressão Parcial (?)   
+Inflação da variância (?)   
 
 
-a <- length(100) # make empty variable, set length to 100
-for (i in 1:100){
-  a[i] <-i #assigns the number in i, to the ith index of a
-}
+### Regressão Não-Linear
 
-print(a)
+Regressão logistica(?) *openintro
 
-# for loop solution #2
+# Referência  
 
-a<-c() #create empty variable using combine command
-for (i in 1:100){
-  a<-c(a,i) # keeps combining a with itself and the new number in i
-}
-print(a)
+* Análise de Regressão  
 
-# seq solution
-a <- seq(1,100,1) # look up help for seq using ?seq() in console
-print(a)
+**Azevedo, Caio L. N.**. ME 613A - Análise de regressão, Primeiro Semestre 2019. 2019. IMECC - UNICAMP. Disponível em: [https://www.ime.unicamp.br/~cnaber/Material_ME613_1S_2019.htm](https://www.ime.unicamp.br/~cnaber/Material_ME613_1S_2019.htm). Acessado em: Julho à X de 2021  
 
-```
+**Carvalho, B**. ME613: Análise de Regressão. Github. 2021. Disponível em: [http://me613-unicamp.github.io/](http://me613-unicamp.github.io/). Acessado em: Julho à X de 2021  
 
-# Replace this with problem 4
+**Caffo, B**. (2019). Regression models for data science in R. Leanpub. 2019. Disponível em: [https://leanpub.com/regmods/read](https://leanpub.com/regmods/read). Acessado em: Julho à X de 2021  
 
-And keep going. Try to solve the problems with different scripts that provide the same solution. Good luck, Happy coding.
+**Diez, D.; Rundel, M. C.; Barr, C. D.**. Openintro Statistics. Quarta edição. Atualizado em 12 de Novembro de 2019. Versão online gratuita. Disponível em: [https://www.openintro.org/book/os/](https://www.openintro.org/book/os/). Acessado em: Julho à X de 2021  
+

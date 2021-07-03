@@ -220,5 +220,6 @@ print(a)
 ```
 
 # Referência
-
-Disponível em: [https://me115-unicamp.github.io/about/](https://me115-unicamp.github.io/about/)
+https://www.allisonhorst.com/
+https://livro.curso-r.com/refer%C3%AAncias.html#programa%C3%A7%C3%A3o-em-r
+Peng, R.D. R Programming for Data Science. Leanpub, 2015. Chambers, J. Software for Data Analysis: Programming with R (Statistics and Computing). Springer, 2009.
