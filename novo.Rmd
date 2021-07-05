@@ -29,11 +29,76 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 Os métodos de análise de regressão formam um conjunto de poderosas ferramentas estatisticas, que estudam a relação entre duas ou mais variaveis e também fazer predições sobre essa relação. Por ser de facil interpretação, essas ferramentas podem se aplicar nas mais diversas àreas e situações, como por exemplo: faixa salarial e nível de educação, consumo de açúcar e percentual de gordura, quantidade de fertilizante e crescimento da planta, quantidade gasta em publicidade e quantidade de vendas de um produto, consumo de contéudo na TV e faixa etária, etc. 
 
-O termo regressão foi criado por Francis Galton no século 19 durante seu estudo sobre a relação entre a altura de pais e filhos, desenvolvido no artigo (*Regression Toward Mediocrity in Hereditary Stature*)[https://galton.org/essays/1880-1889/galton-1886-jaigi-regression-stature.pdf]. Hoje aplicamos estas tecnicas com o apoio da programação, aqui faremos uso do software RStudio.  
+O termo regressão foi criado por Francis Galton no século 19 durante seu estudo sobre a relação entre a altura de pais e filhos, desenvolvido no artigo [*Regression Toward Mediocrity in Hereditary Stature*](https://galton.org/essays/1880-1889/galton-1886-jaigi-regression-stature.pdf). Hoje aplicamos estas tecnicas com o apoio da programação, aqui faremos uso do software RStudio.  
 
-### Regressão Linear Simples
+### Regressão Linear Simples  
 
- + Modelo 
+Nesta sessão estudaremos as técnicas de regresão aplicadas à duas variaveis que relacionam de forma linear, isto é, essa relação pode ser descrita por uma reta.
+
+Vamos dar uma olhada nos [dados](https://people.sc.fsu.edu/~jburkardt/datasets/regression/x09.txt) idade e teor de gordura no sangue que seguem abaixo:
+
+```{r, echo=FALSE}
+library("readxl")
+library("ggplot2")
+dados = read_xlsx("C:\\Users\\Larissa Ribeiro\\Documents\\GitHub\\TesteWebsite\\sangue.xlsx")
+dados  = dados[order(dados$Idade),c(3,4)]
+```
+
+```{r, echo=FALSE}
+head(dados)
+```
+
+Como pode-se notar no gráfico, a relação entre idade e teor de gordura no sangue aparentemente linear.
+```{r, include=FALSE}
+fit <- lm(Gordura ~ Idade, dados) 
+fit
+predicted <- data.frame(pred = predict(fit, dados), Idade = dados$Idade)
+```
+
+
+```{r, echo=FALSE}
+# this is the predicted line of multiple linear regression
+ggplot(data = dados, aes(x = Idade, y = Gordura)) + 
+  geom_point(color='cornflowerblue') +
+  geom_line(color='cornflowerblue',data = predicted, aes(x=Idade, y=pred))+
+  theme_bw()
+```
+
+Sabemos que na matemática básica, a relação linear é descrita como:
+
+$$Y_i = a+bX_i$$
+onde:  
+ - $Y$ são as $i$ variáveis dependentes;  
+ - $a$ é o intercepto;  
+ - $b$ é o coeficiente angular;
+ - $X$ são as $i$ variáveis independetes;  
+ - $i=1,2,3...$.
+ 
+No caso do exemplo, a relação entre Idade e Teor de Gordura no Sangue pode ser descrita por:
+
+$$Y_i = 102.6 + 5.3X_i$$
+ 
+
+ + **Modelo**
+ 
+Em regressão linear, a estrutura é quase a mesma. Mudamos o nome dos parâmetros $a$ e $b$ para as letras gregas $\beta_0$ e $\beta_1$ respectivamente e adicionamos o termo $\epsilon_i$, que vai representar o erro (também chamado de ruído) de cada observação (já que, quando coletamos determinado medida em um experimento, essa medição é passivel de pequenos erros a cada coleta). Então, o **modelo de regressão linear simples** é:
+
+
+$$Y_i =\beta_0+\beta_1X_i + \epsilon_i$$
+onde:  
+ 
+ - $Y$ são as $i$ variáveis dependentes;  
+ - $\beta_0$ é o intercepto;  
+ - $\beta_1$ é o coeficiente angular;
+ - $X$ são as $i$ variáveis independetes; 
+ - $\epsilon_i$ são os erros de cada observação $X_i$;
+ - $i=1,2,3...$.
+
+Voltando ao exemplo, graficamente teremos: 
+
+<div style="float:center;max-width:90%; max-height: 120%;" markdown="1"> ![](images/denovo.jpeg)
+</div> 
+ 
  + Estimação dos parâmetros
  + Análise de Variância
  + Intervalos de confiança

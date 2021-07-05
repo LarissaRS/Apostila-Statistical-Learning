@@ -365,10 +365,50 @@ div.tocify {
 <div id="introduçãomotivação" class="section level2">
 <h2>Introdução/Motivação</h2>
 <p>Os métodos de análise de regressão formam um conjunto de poderosas ferramentas estatisticas, que estudam a relação entre duas ou mais variaveis e também fazer predições sobre essa relação. Por ser de facil interpretação, essas ferramentas podem se aplicar nas mais diversas àreas e situações, como por exemplo: faixa salarial e nível de educação, consumo de açúcar e percentual de gordura, quantidade de fertilizante e crescimento da planta, quantidade gasta em publicidade e quantidade de vendas de um produto, consumo de contéudo na TV e faixa etária, etc.</p>
+<p>O termo regressão foi criado por Francis Galton no século 19 durante seu estudo sobre a relação entre a altura de pais e filhos, desenvolvido no artigo <a href="https://galton.org/essays/1880-1889/galton-1886-jaigi-regression-stature.pdf"><em>Regression Toward Mediocrity in Hereditary Stature</em></a>. Hoje aplicamos estas tecnicas com o apoio da programação, aqui faremos uso do software RStudio.</p>
 <div id="regressão-linear-simples" class="section level3">
 <h3>Regressão Linear Simples</h3>
+<p>Nesta sessão estudaremos as técnicas de regresão aplicadas à duas variaveis que relacionam de forma linear, isto é, essa relação pode ser descrita por uma reta.</p>
+<p>Vamos dar uma olhada nos <a href="https://people.sc.fsu.edu/~jburkardt/datasets/regression/x09.txt">dados</a> idade e teor de gordura no sangue que seguem abaixo:</p>
+<pre><code>## # A tibble: 6 x 2
+##   Idade Gordura
+##   &lt;dbl&gt;   &lt;dbl&gt;
+## 1    20     190
+## 2    23     254
+## 3    23     181
+## 4    24     209
+## 5    25     302
+## 6    28     288</code></pre>
+<p>Como pode-se notar no gráfico, a relação entre idade e teor de gordura no sangue aparentemente linear.</p>
+<p><img src="novo_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Sabemos que na matemática básica, a relação linear é descrita como:</p>
+<p><span class="math display">\[Y_i = a+bX_i\]</span> onde:<br />
+- <span class="math inline">\(Y\)</span> são as <span class="math inline">\(i\)</span> variáveis dependentes;<br />
+- <span class="math inline">\(a\)</span> é o intercepto;<br />
+- <span class="math inline">\(b\)</span> é o coeficiente angular; - <span class="math inline">\(X\)</span> são as <span class="math inline">\(i\)</span> variáveis independetes;<br />
+- <span class="math inline">\(i=1,2,3...\)</span>.</p>
+<p>No caso do exemplo, a relação entre Idade e Teor de Gordura no Sangue pode ser descrita por:</p>
+<p><span class="math display">\[Y_i = 102.6 + 5.3X_i\]</span></p>
 <ul>
-<li>Modelo</li>
+<li><strong>Modelo</strong></li>
+</ul>
+<p>Em regressão linear, a estrutura é quase a mesma. Mudamos o nome dos parâmetros <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> para as letras gregas <span class="math inline">\(\beta_0\)</span> e <span class="math inline">\(\beta_1\)</span> respectivamente e adicionamos o termo <span class="math inline">\(\epsilon_i\)</span>, que vai representar o erro (também chamado de ruído) de cada observação (já que, quando coletamos determinado medida em um experimento, essa medição é passivel de pequenos erros a cada coleta). Então, o <strong>modelo de regressão linear simples</strong> é:</p>
+<p><span class="math display">\[Y_i =\beta_0+\beta_1X_i + \epsilon_i\]</span> onde:</p>
+<ul>
+<li><span class="math inline">\(Y\)</span> são as <span class="math inline">\(i\)</span> variáveis dependentes;<br />
+</li>
+<li><span class="math inline">\(\beta_0\)</span> é o intercepto;<br />
+</li>
+<li><span class="math inline">\(\beta_1\)</span> é o coeficiente angular;</li>
+<li><span class="math inline">\(X\)</span> são as <span class="math inline">\(i\)</span> variáveis independetes;</li>
+<li><span class="math inline">\(\epsilon_i\)</span> são os erros de cada observação <span class="math inline">\(X_i\)</span>;</li>
+<li><span class="math inline">\(i=1,2,3...\)</span>.</li>
+</ul>
+<p>Voltando ao exemplo, graficamente teremos:</p>
+<div style="float:center;max-width:90%; max-height: 120%;" markdown="1">
+<p><img src="images/denovo.jpeg" /></p>
+</div>
+<ul>
 <li>Estimação dos parâmetros</li>
 <li>Análise de Variância</li>
 <li>Intervalos de confiança</li>
