@@ -1,0 +1,147 @@
+---
+title: "Apêndice"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+```
+[EM CONSTRUÇÃO]
+
+&nbsp;
+
+&nbsp;
+
+# Demonstração 1
+
+Manipulações algébricas a partir das Equações Normais para encontrar os estimadores dos parâmetros $\beta$
+
+Para $\beta_0$:
+$$\sum_{i=1}^{n}Y_i=n\hat{\beta}_0+\hat{\beta}_1\sum_{i=1}^{n}X_i$$
+
+$$n\hat{\beta}_0=\sum_{i=1}^{n}Y_i-\hat{\beta}_1\sum_{i=1}^{n}X_i$$
+
+$$\hat{\beta}_0=\frac{\sum_{i=1}^{n}Y_i}{n}-\hat{\beta}_1\frac{\sum_{i=1}^{n}X_i}{n}$$
+
+$$\hat{\beta}_0=\frac{1}{n}(\sum_{i=1}^{n}Y_i-\beta_1\sum_{i=1}^{n}X_i)$$
+
+$$\hat{\beta}_0=\bar{Y}-\beta_1\bar{X}$$
+&nbsp;
+
+&nbsp;
+Para $\beta_1$:
+
+$$\sum_{i=1}^{n}X_iY_i\quad=\quad\hat{\beta}_0\sum_{i=1}^{n}X_i+\hat{\beta}_1\sum_{i=1}^{n}X_i^2$$
+
+&nbsp;
+
+$$\sum_{i=1}^{n}X_iY_i-\hat{\beta}_0\sum_{i=1}^{n}X_i\quad=\quad\hat{\beta}_1\sum_{i=1}^{n}X_i^2$$
+
+&nbsp;
+
+$$\sum_{i=1}^{n}X_iY_i-\Bigg(\frac{\sum_{i=1}^{n}Y_i}{n}-\hat{\beta}_1\frac{\sum_{i=1}^{n}X_i}{n}\Bigg)\sum_{i=1}^{n}X_i\quad=\quad\hat{\beta}_1\sum_{i=1}^{n}X_i^2$$
+
+&nbsp;
+
+$$\sum_{i=1}^{n}X_iY_i-\frac{\sum_{i=1}^{n}Y_i\sum_{i=1}^{n}X_i}{n}+\hat{\beta}_1\frac{(\sum_{i=1}^{n}X_i)^2}{n}\quad=\quad\hat{\beta}_1\sum_{i=1}^{n}X_i^2$$
+
+&nbsp;
+
+$$\sum_{i=1}^{n}X_iY_i-\frac{\sum_{i=1}^{n}Y_i\sum_{i=1}^{n}X_i}{n}\quad=\quad\hat{\beta}_1\sum_{i=1}^{n}X_i^2-\hat{\beta}_1\frac{(\sum_{i=1}^{n}X_i)^2}{n}$$
+
+&nbsp;
+
+$$\sum_{i=1}^{n}X_iY_i-\frac{\sum_{i=1}^{n}Y_i\sum_{i=1}^{n}X_i}{n}\quad=\quad\hat{\beta}_1\Bigg(\sum_{i=1}^{n}X_i^2-\frac{(\sum_{i=1}^{n}X_i)^2}{n}\Bigg)$$
+
+&nbsp;
+
+$$\hat{\beta}_1=\frac{\sum_{i=1}^{n}X_iY_i-\frac{\sum_{i=1}^{n}Y_i\sum_{i=1}^{n}X_i}{n}}{\sum_{i=1}^{n}X_i^2-\frac{(\sum_{i=1}^{n}X_i)^2}{n}}$$
+
+&nbsp;
+
+$$\hat{\beta}_1=\frac{\sum_{i=1}^{n}(Y_i-\frac{\sum_{i=1}^{n}Y_i}{n})}{\sum_{i=1}^{n}(X_i-\frac{\sum_{i=1}^{n}X_i}{n})}$$
+
+&nbsp;
+
+$$\hat{\beta}_1=\frac{\sum_{i=1}^{n}(Y_i-\bar{Y})}{\sum_{i=1}^{n}(X_i-\bar{X})}$$
+
+&nbsp;
+
+$$\hat{\beta}_1=\frac{\sum_{i=1}^{n}(Y_i-\bar{Y})(X_i-\bar{X})}{\sum_{i=1}^{n}(X_i-\bar{X})(X_i-\bar{X})}$$
+
+&nbsp;
+
+$$\hat{\beta}_1=\frac{\sum_{i=1}^{n}(Y_i-\bar{Y})(X_i-\bar{X})}{\sum_{i=1}^{n}(X_i-\bar{X})^2}$$
+
+&nbsp;
+
+Manipulações algébricas a partir da derivada parcial da função de máxima verossimilhança para encontrar o estimar da variância.
+
+&nbsp;
+
+$$\frac{\partial L(\beta_o, \beta_1, \sigma^2)}{\partial \sigma^2}=\frac{n}{\hat{\sigma}^2}-\frac{1}{\hat{\sigma}^4}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)=0$$
+
+$$\frac{n}{\hat{\sigma}^2}=\frac{1}{\hat{\sigma}^4}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)$$
+$$n=\frac{1}{\hat{\sigma}^2}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)$$
+
+$$\hat{\sigma}^2=\frac{1}{n}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)^2$$
+Como $\hat{Y}_i=\beta_0-\beta_1X_i$, então:
+
+$$\hat{\sigma}^2=\frac{\sum_{i=1}^{n}(Y_i-\hat{Y}_i)^2}{n}$$
+
+# Demonstração 2
+
+Lineariedade dos estimadores de mínimos quadrados.
+
+* Para $\hat{\beta}_1$:
+
+$$\hat{\beta}_1=\frac{\sum_{i=1}^{n}(Y_i-\bar{Y})(X_i-\bar{X})}{\sum_{i=1}^{n}(X_i-\bar{X})^2}$$
+
+$$\qquad=\frac{1}{\sum_{i=1}^{n}(X_i-\bar{X})^2}\Bigg(\sum_{i=1}^{n}(Y_i-\bar{Y})(X_i-\bar{X})\Bigg)$$
+
+
+$$\qquad=\frac{1}{\sum_{i=1}^{n}(X_i-\bar{X})^2}\Bigg(\sum_{i=1}^{n}(Y_i-\bar{Y})(X_i-\bar{X})\Bigg)$$
+$$\qquad=\frac{1}{\sum_{i=1}^{n}(X_i-\bar{X})^2}\Bigg(\sum_{i=1}^{n}(X_i-\bar{X})Y_i-(X_i-\bar{X})\bar{Y}\Bigg)$$
+Como $(X_i-\bar{X})\bar{Y}=0$, então,
+
+$$\qquad=\frac{1}{\sum_{i=1}^{n}(X_i-\bar{X})^2}\Bigg(\sum_{i=1}^{n}(Y_i-\bar{Y})(X_i-\bar{X})\Bigg)$$
+$$\qquad=\frac{1}{\sum_{i=1}^{n}(X_i-\bar{X})^2}\Bigg(\sum_{i=1}^{n}(X_i-\bar{X})Y_i\Bigg)$$
+$$\qquad=\frac{\sum_{i=1}^{n}(X_i-\bar{X})Y_i}{\sum_{i=1}^{n}(X_i-\bar{X})^2}$$
+Considerando que 
+$$\frac{\sum_{i=1}^{n}(X_i-\bar{X})Y_i}{\sum_{i=1}^{n}(X_i-\bar{X})^2}=\sum_{i=1}^{n}\frac{(X_i-\bar{X})}{\sum_{i=1}^{n}(X_i-\bar{X})^2}Y_i$$
+Vamos chamar de $z_i=\frac{(X_i-\bar{X})Y_i}{\sum_{i=1}^{n}(X_i-\bar{X})^2}$, então
+
+$$\beta_1=z_iY_i$$
+
+* Para $\hat{\beta}_0$:
+
+$$\hat{\beta}_0 = \bar{Y}-\hat{\beta}_1\bar{X}$$
+
+$$\qquad = \frac{\sum_{i=1}^{n}Y_i}{n}-\hat{\beta}_1\frac{\sum_{i=1}^{n}Y_i}{n}$$
+$$\qquad = \frac{\sum_{i=1}^{n}Y_i}{n}-z_iY_i\frac{\sum_{i=1}^{n}X_i}{n}$$
+$$\qquad = \sum_{i=1}^{n}\Bigg(\frac{1}{n}-z_i\frac{\sum_{i=1}^{n}X_i}{n}\Bigg)Y_i$$
+
+$$\qquad = \sum_{i=1}^{n}\Bigg(\frac{1}{n}-z_iY_i\bar{X}\Bigg)Y_i$$
+Renomeando $z_i^*=\frac{1}{n}-z_iY_i\bar{X}$, temos:
+
+$$\qquad = \sum_{i=1}^{n}z_i^*Y_i$$
+
+
+# Demonstração 3
+
+Valor esperado dos parâmetros
+
+# Demonstração 4
+
+Variância dos parâmetros
+
+# Demonstração 5
+
+Covariância dos parâmetros

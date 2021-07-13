@@ -10,4 +10,6 @@ navbar:
       href: novo.html
     - text: "Statistical Learning"
       href: Journal.html
+    - text: "Apêndice Geral"
+      href: apendice.html
 output_dir: "docs"

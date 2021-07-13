@@ -329,6 +329,9 @@ div.tocify {
 <li>
   <a href="Journal.html">Statistical Learning</a>
 </li>
+<li>
+  <a href="apendice.html">Apêndice Geral</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -349,26 +352,20 @@ div.tocify {
 <p>[EM CONSTRUÇÃO]</p>
 <p> </p>
 <p> </p>
-<div id="introdução" class="section level1">
-<h1>Introdução</h1>
-</div>
-<div id="analise-descritiva" class="section level1">
-<h1>Analise descritiva</h1>
-</div>
-<div id="probabilidade" class="section level1">
-<h1>Probabilidade</h1>
-</div>
-<div id="inferência" class="section level1">
-<h1>Inferência</h1>
-</div>
 <div id="análise-de-regressão" class="section level1">
-<h1>Análise de Regressão</h1>
-<div id="introduçãomotivação" class="section level2">
-<h2>Introdução/Motivação</h2>
-<p>Os métodos de análise de regressão formam um conjunto de poderosas ferramentas estatisticas, que estudam a relação entre duas ou mais variaveis e também fazer predições sobre essa relação. Por ser de facil interpretação, essas ferramentas podem se aplicar nas mais diversas àreas e situações, como por exemplo: faixa salarial e nível de educação, consumo de açúcar e percentual de gordura, quantidade de fertilizante e crescimento da planta, quantidade gasta em publicidade e quantidade de vendas de um produto, consumo de contéudo na TV e faixa etária, etc.</p>
+<h1><strong>Análise de Regressão</strong></h1>
+<p> </p>
+<p>Os métodos de análise de regressão formam um conjunto de poderosas ferramentas estatisticas, que estudam a relação entre duas ou mais variaveis. Por ser de facil interpretação, essas ferramentas podem se aplicar nas mais diversas àreas e situações, como por exemplo: faixa salarial e nível de educação, consumo de açúcar e percentual de gordura, quantidade de fertilizante e crescimento da planta, quantidade gasta em publicidade e quantidade de vendas de um produto, consumo de contéudo na TV e faixa etária, etc. Esse conjunto de ferramentas nos permite lidar com os três tópicos mais comuns quando se trata de regressão:</p>
+<ul>
+<li><strong>Modelagem:</strong> Cria uma equação que descreve a relação entre as variáveis em questão,de forma parcimoniosa;</li>
+<li><strong>Covariância:</strong> Estuda a variação entre as variâveis que aparentemente não tem relação entre si;</li>
+<li><strong>Predição:</strong> Estima os resultados do modelo para situações incertas.</li>
+</ul>
 <p>O termo regressão foi criado por Francis Galton no século 19 durante seu estudo sobre a relação entre a altura de pais e filhos, desenvolvido no artigo <a href="https://galton.org/essays/1880-1889/galton-1886-jaigi-regression-stature.pdf"><em>Regression Toward Mediocrity in Hereditary Stature</em></a>. Hoje aplicamos estas tecnicas com o apoio da programação, aqui faremos uso do software RStudio.</p>
-<div id="regressão-linear-simples" class="section level3">
-<h3>Regressão Linear Simples</h3>
+<p> </p>
+</div>
+<div id="regressão-linear-simples" class="section level1">
+<h1>1. Regressão Linear Simples</h1>
 <p>Nesta sessão estudaremos as técnicas de regresão aplicadas à duas variaveis que relacionam de forma linear, isto é, essa relação pode ser descrita por uma reta.</p>
 <p>Vamos dar uma olhada nos <a href="https://people.sc.fsu.edu/~jburkardt/datasets/regression/x09.txt">dados</a> idade e teor de gordura no sangue que seguem abaixo:</p>
 <pre><code>## # A tibble: 6 x 2
@@ -389,79 +386,222 @@ div.tocify {
 - <span class="math inline">\(b\)</span> é o coeficiente angular; - <span class="math inline">\(X\)</span> são as <span class="math inline">\(i\)</span> variáveis independetes;<br />
 - <span class="math inline">\(i=1,2,3...\)</span>.</p>
 <p>No caso do exemplo, a relação entre Idade e Teor de Gordura no Sangue pode ser descrita por:</p>
-<p><span class="math display">\[Y_i = 102.6 + 5.3X_i\]</span></p>
+<p><span class="math display">\[\hat{y}_i = 102.6 + 5.3x_i\]</span>  </p>
+</div>
+<div id="modelo" class="section level1">
+<h1>1.1 Modelo</h1>
+<p>Em regressão linear, a estrutura é quase a mesma. Mudamos o nome dos parâmetros <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> para as letras gregas <span class="math inline">\(\beta_0\)</span> e <span class="math inline">\(\beta_1\)</span> respectivamente e adicionamos o termo <span class="math inline">\(\varepsilon_i\)</span>, que vai representar o erro (também chamado de ruído) de cada observação (já que, quando coletamos determinado medida em um experimento, essa medição é passivel de pequenos erros a cada coleta). Então, o <strong>modelo de regressão linear simples</strong> é:</p>
+<p><span class="math display">\[Y_i =\beta_0+\beta_1X_i + \varepsilon_i\]</span> onde:</p>
 <ul>
-<li><strong>Modelo</strong></li>
-</ul>
-<p>Em regressão linear, a estrutura é quase a mesma. Mudamos o nome dos parâmetros <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> para as letras gregas <span class="math inline">\(\beta_0\)</span> e <span class="math inline">\(\beta_1\)</span> respectivamente e adicionamos o termo <span class="math inline">\(\epsilon_i\)</span>, que vai representar o erro (também chamado de ruído) de cada observação (já que, quando coletamos determinado medida em um experimento, essa medição é passivel de pequenos erros a cada coleta). Então, o <strong>modelo de regressão linear simples</strong> é:</p>
-<p><span class="math display">\[Y_i =\beta_0+\beta_1X_i + \epsilon_i\]</span> onde:</p>
-<ul>
-<li><span class="math inline">\(Y\)</span> são as <span class="math inline">\(i\)</span> variáveis dependentes;<br />
+<li><span class="math inline">\(Y\)</span> são as <span class="math inline">\(i\)</span> variáveis independentes (ou resposta para a i-ésima obervação);<br />
 </li>
 <li><span class="math inline">\(\beta_0\)</span> é o intercepto;<br />
 </li>
-<li><span class="math inline">\(\beta_1\)</span> é o coeficiente angular;</li>
-<li><span class="math inline">\(X\)</span> são as <span class="math inline">\(i\)</span> variáveis independetes;</li>
-<li><span class="math inline">\(\epsilon_i\)</span> são os erros de cada observação <span class="math inline">\(X_i\)</span>;</li>
+<li><span class="math inline">\(\beta_1\)</span> é o incremento de <span class="math inline">\(X_i\)</span> em <span class="math inline">\(Y_i\)</span>;</li>
+<li><span class="math inline">\(X\)</span> são as <span class="math inline">\(i\)</span> variáveis independetes (ou conhecidas);</li>
+<li><span class="math inline">\(\varepsilon_i\)</span> são os erros de cada observação <span class="math inline">\(X_i\)</span>;</li>
 <li><span class="math inline">\(i=1,2,3...\)</span>.</li>
 </ul>
-<p>Voltando ao exemplo, graficamente teremos:</p>
+<p>Voltando ao exemplo, na figura abaixo temos as representações dos parâmetros nas partes em destaque: <span class="math inline">\(\beta_0\)</span> como intercepto, isto é, ponto em que a reta corta o eixo <span class="math inline">\(Y\)</span>; <span class="math inline">\(\beta_1\)</span> como incremento em <span class="math inline">\(Y\)</span> para cada uma unidade de <span class="math inline">\(X\)</span>; e por fim <span class="math inline">\(\varepsilon_i\)</span> como a distância entre a reta de regressão e a observação <span class="math inline">\(X_i\)</span>.</p>
 <div style="float:center;max-width:90%; max-height: 120%;" markdown="1">
 <p><img src="images/denovo.jpeg" /></p>
 </div>
+<p>Deste modo, nosso modelo de regressão linear simples que descreve a relação entre idade e teor de gordura no sangue é:</p>
+<p><span class="math display">\[\hat{y}_i = 102.6 + 5.3x_i+\varepsilon_i\]</span> para <span class="math inline">\(i=1,2,...,24,25\)</span>.</p>
+<p> </p>
+</div>
+<div id="estimação-dos-parâmetros" class="section level1">
+<h1>1.2 Estimação dos parâmetros</h1>
+<p> </p>
+<p>Mas afinal, como determinamos os valores de <span class="math inline">\(\beta_0\)</span> e <span class="math inline">\(\beta_1\)</span>? Para resolver essa questão, temos dois métodos estatisticos: método de mínimos quadrados e método da máxima verossimilhança. Em ambos o objetivo é sempre encontrar um <span class="math inline">\(\beta_0\)</span> e <span class="math inline">\(\beta_1\)</span> que nos dê a melhor reta em relação aos dados.</p>
+<p> </p>
+</div>
+<div id="método-de-mínimos-quadrados" class="section level1">
+<h1>1.2.1 Método de Mínimos Quadrados</h1>
+<p> </p>
+<p>Para encontrar a melhor reta, este método minimiza a soma dos erros <span class="math inline">\(\varepsilon_i\)</span>, ou seja, a soma das distâncias entre a reta e os dados coletados. Como estamos somando o tamanho desse erros, elevamos seus valores ao quadrado, então temos:</p>
+<p><span class="math display">\[\varepsilon_1^2+\varepsilon_2^2+\varepsilon_3^2+...+\varepsilon_n^2 = \sum_{i=1}^{n} \varepsilon_i^2\]</span></p>
+<p>para <span class="math inline">\(i= 1,2,3,...n.\)</span>, i.e. para n observações. Como <span class="math inline">\(\varepsilon_i = Y_i-(\beta_0+\beta_1X_i)= Y_i-\beta_0-\beta_1X_i\)</span>, então queremos encontrar um <span class="math inline">\(\beta_0\)</span> e <span class="math inline">\(\beta_1\)</span> tal que minimize <span class="math inline">\(Q\)</span>:</p>
+<p><span class="math display">\[Q=\sum_{i=1}^{n} \varepsilon_i^2=\sum_{i=1}^{n} (Y_i-\beta_0-\beta_1X_i)^2\]</span> Para encontrar essas estimativas analiticamente nos baseando no modelo de regressão simples, usaremos as duas equações que seguem abaixo,conjuntamente:</p>
+<p><span class="math display">\[\sum_{i=1}^{n}Y_i = n\beta_0-\beta_1\sum_{i=1}^{n}X_i\]</span> <span class="math display">\[\sum_{i=1}^{n}X_iY_i = \beta_0\sum_{i=1}^{n}X_i-\beta_1\sum_{i=1}^{n}X_i^2\]</span> Essa equações, também chamadas de equações normais, podem ser derivadas em relação aos parâmetros:</p>
+<span class="math display">\[\frac{\partial Q}{\partial \beta_0}=-2\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)\]</span><br />
+<span class="math display">\[\frac{\partial Q}{\partial \beta_1}=-2\sum_{i=1}^{n}X_i(Y_i-\beta_0-\beta_1X_i)\]</span><br />
+
+<div style="float:right;max-width:35%; max-height: 35%;" markdown="1">
+<p><img src="images/note1.jpg" /></p>
+</div>
+<p>Igualando essas derivadas à zero, encontramos os valores de <span class="math inline">\(\beta_0\)</span> e <span class="math inline">\(\beta_1\)</span> que minimizam <span class="math inline">\(Q\)</span>:</p>
+<p><span class="math display">\[-2\sum_{i=1}^{n}(Y_i-\hat{\beta}_0-\hat{\beta}_1X_i)=0\]</span> <span class="math display">\[-2\sum_{i=1}^{n}X_i(Y_i-\hat{\beta}_0-\hat{\beta}_1X_i)=0\]</span></p>
+<p>Dividindo os dois lados das equações por <span class="math inline">\(-2\)</span>: <span class="math display">\[\sum_{i=1}^{n}(Y_i-\hat{\beta}_0-\hat{\beta}_1X_i)=0\]</span> <span class="math display">\[\sum_{i=1}^{n}X_i(Y_i-\hat{\beta}_0-\hat{\beta}_1X_i)=0\]</span></p>
+<p>Expandindo as equações, conseguimos chegar nas equações normais: <span class="math display">\[\sum_{i=1}^{n}Y_i-n\hat{\beta}_0-\hat{\beta}_1\sum_{i=1}^{n}X_i=0\]</span> <span class="math display">\[\sum_{i=1}^{n}X_iY_i-\hat{\beta}_0\sum_{i=1}^{n}X_i-\hat{\beta}_1\sum_{i=1}^{n}X_i^2=0\]</span></p>
+<p> </p>
+<div class="panel panel-success">
+<p><span class="math inline">\(\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\)</span> <strong>Equações Normais</strong></p>
+<div class="panel-body">
+<p><span class="math display">\[\sum_{i=1}^{n}Y_i\quad=n\hat{\beta}_0+\hat{\beta}_1\sum_{i=1}^{n}X_i\]</span> <span class="math display">\[\sum_{i=1}^{n}X_iY_i\quad=\hat{\beta}_0\sum_{i=1}^{n}X_i+\hat{\beta}_1\sum_{i=1}^{n}X_i^2\]</span></p>
+</div>
+</div>
+<p> </p>
+<p>A partir delas conseguim ao isolar os parâmetros e obter as estimações. Para mais detalhes desta etapa, clique <a href="">aqui</a></p>
+<p> </p>
+<p><span class="math display">\[\hat{\beta}_0=\bar{Y}-\beta_1\bar{X}\]</span></p>
+<p><span class="math display">\[\hat{\beta}_1 = \frac{\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})}{\sum_{i=1}^{n}(X_i-\bar{X})}\]</span> Considerando: <span class="math inline">\(\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})=S_{xy}\)</span> como a soma dos produtos de X e Y; <span class="math inline">\(\sum_{i=1}^{n}(X_i-\bar{X})=S_{XX}\)</span> como a soma dos quadrados de X. Então podemos dizer que</p>
+<p><span class="math display">\[\hat{\beta}_1 = \frac{\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})}{\sum_{i=1}^{n}(X_i-\bar{X})}=\frac{S_{xy}}{S_{xx}}\]</span></p>
+<p>As <strong>vantagens</strong> do método dos mínimos quadrados é que, além de ser comumente usado, ele é comportado pelos programas de estatística de modo geral.<br />
+Entretanto, precisamos de certos <strong>requisitos</strong> para poder usar ele:</p>
 <ul>
-<li>Estimação dos parâmetros</li>
-<li>Análise de Variância</li>
-<li>Intervalos de confiança</li>
-<li>Teste de Hipótese</li>
-<li>Predição</li>
-<li>Resíduos *Openintro</li>
-<li>Diagnostico</li>
-<li>Transformações</li>
+<li><strong>Lineariedade dos dados:</strong> seu comportamento pode ser decrito por uma reta</li>
+</ul>
+<div style="float:center;max-width:90%; max-height: 90%;" markdown="1">
+<p><img src="images/regressoes.jpg" /></p>
+</div>
+<ul>
+<li><strong>Normalidade dos resíduos:</strong> os resíduos do modelo seguem uma distribuição aproximadamente normal, i.e., <span class="math inline">\(\epsilon \cong N(\mu, \sigma^2)\)</span>.</li>
+</ul>
+<div style="float:center;max-width:45%; max-height: 45%;" markdown="1">
+<p><img src="images/resinorm.jpg" /></p>
+</div>
+<ul>
+<li><strong>Homocedasticidade:</strong> a variabilidade dos resíduos é constante., ou seja, <span class="math inline">\(Var(\epsilon)=c\)</span>.</li>
+</ul>
+<div style="float:center;max-width:40%; max-height: 40%;" markdown="1">
+<p><img src="images/homoresi.jpg" /></p>
+</div>
+<ul>
+<li><strong>Erros sem autocorrelação:</strong> Os valores ordenados não tem relação com o espaço ou tempo. Matematicamente, <span class="math inline">\(\epsilon_i\)</span> e <span class="math inline">\(\epsilon_j\)</span> tem <span class="math inline">\(Cov(\epsilon_i, \epsilon_j)=0, \forall i \ne j\)</span>.</li>
+</ul>
+<div style="float:center;max-width:50%; max-height: 50%;" markdown="1">
+<p><img src="images/autocor.jpg" /></p>
+</div>
+</div>
+<div id="propriedades." class="section level1">
+<h1>1.2.1.1 Propriedades.</h1>
+<p>Os estimadores <span class="math inline">\(\hat{\beta}\)</span> obtidos pelo método de método de mínimos quadrados são funções lineares de Y (veja a demonstração matemática <a href="">aqui</a>). E segundo o Teorema de Gauss Markov, dado as condições do modelo de regressão linear, o método de mínimos quadrados:</p>
+<ul>
+<li><p>Tem estimadores <span class="math inline">\(\beta_0\)</span> e <span class="math inline">\(\beta_1\)</span> não viesados, i.e., o valor esperado do estimador é ao próprio arametro que foi estimado, por exemplo <span class="math inline">\(E(\hat{\theta})=\theta\)</span>. Isso independente da distribuição de probabilidade desses erros. Para a demonstração, veja mais <a href="">aqui</a></p></li>
+<li><p>Tem a mínima variância entre todos os estimadores não viesados e lineares. Logo eles são os mais precisos entre esse tipo de estimador.</p></li>
+</ul>
+<p>Além disso temos que:</p>
+<ul>
+<li>$$ # 1.2.1.2 ANOVA e R²</li>
 </ul>
 </div>
-<div id="regressão-linear-multipla" class="section level3">
-<h3>Regressão Linear Multipla</h3>
-<ul>
-<li>Forma matricial</li>
-<li>Estimação dos parâmetros</li>
-<li>Análise de Variância</li>
-<li>Predição</li>
-<li>Teste de Hipótese</li>
-<li>Intervalo de Confiança</li>
-</ul>
+<div id="exemplo" class="section level1">
+<h1>1.2.1.3 Exemplo</h1>
+<p> </p>
+</div>
+<div id="método-da-máxima-verossimilhança" class="section level1">
+<h1>1.2.2 Método da Máxima Verossimilhança</h1>
+<p>O método de máxima verossilimilhança utiliza o produtos das densidades das distribuição de probabilidade de <span class="math inline">\(Y_i\)</span> como uma medida para a <em>consistencia</em> dos parâmetros para aquela amostra. Assim o método escolhe os valores máximos da verossimilhança estimada, tal que os valores dos paramêtros sejam mais consistentes.</p>
+<p>Partindo do fato que <span class="math inline">\(E(Y_i) = \beta_0-\beta_1X_i\)</span> e <span class="math inline">\(Var[Y_i]=\sigma^2\)</span>, então a função densidade de probabilidade de <span class="math inline">\(Y_i\)</span> será:</p>
+<p><span class="math display">\[f_i=\frac{1}{\sqrt {2\pi\sigma} }exp\bigg[-\frac{1}{2}\bigg(\frac{Y_i-\beta_0-\beta_1X_i}{\sigma}\bigg)^2 \bigg]\]</span></p>
+<p>Fazendo o produtório das n densidades, correspondentes a cada uma das n observações, temos a função de máxima verossimilhança. Nela consideramos que a variância dos erros de cada observação é desconhecida:</p>
+<p><span class="math display">\[\mathcal{L}(\beta_o, \beta_1, \sigma^2)=  \prod_{i=1}^{n} \frac{1}{(2\pi\sigma^2)^{1/2}}exp\bigg[-\frac{1}{2\sigma^2}(Y_i-\beta_0-\beta_1X_i)^2 \bigg]\]</span> Simplificando a equação temos: <span class="math display">\[\mathcal{L}(\beta_o, \beta_1, \sigma^2)=\frac{1}{(2\pi\sigma^2)^{n/2}}exp\bigg[ -\frac{1}{2\sigma^2}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)^2\bigg]\]</span></p>
+<p>Para encontrar as estimativas dos parâmetros precisaremos fazer as derivadas parciais de <span class="math inline">\(L(\beta_o, \beta_1, \sigma^2)\)</span> em relação a cada parâmetro. Como <span class="math inline">\(L(\beta_o, \beta_1, \sigma^2)\)</span> e <span class="math inline">\(ln(L(\beta_o, \beta_1, \sigma^2))\)</span> são equações que maximizam a verossimilhança, podemos trabalhar com ambos. Note que usaremos a seguinte notação:</p>
+<p><span class="math display">\[L(\beta_o, \beta_1, \sigma^2) = -\frac{n}{2} ln( 2\pi) -\frac{n}{2} ln(\sigma^2)-\frac{1}{2\sigma^2}\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)^2\]</span></p>
+<div style="float:right;max-width:35%; max-height: 35%;" markdown="1">
+<p><img src="images/note2.jpg" /></p>
+</div>
+<p>Mas escolhemos o logaritmo da função de máxima verossimilhança por ser mais facil de derivar. Seguem as derivadas particias dos parâmetros, já igualadas a zero:</p>
+<p> </p>
+<p><span class="math display">\[\frac{\partial L(\beta_o, \beta_1, \sigma^2)}{\partial \beta_0}\quad= -\frac{1}{\sigma^2}\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)=0\]</span></p>
+<p><span class="math display">\[\qquad\qquad\quad=\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)=0\]</span> <span class="math display">\[\sum_{i=1}^{n}y_i=n\beta_0+(\sum_{i=1}^{n}x_i)\beta_1\]</span></p>
+<p> </p>
+<p> </p>
+<p><span class="math display">\[\frac{\partial L(\beta_o, \beta_1, \sigma^2)}{\partial \beta_1} \quad= -\frac{1}{\sigma^2}\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)=0\]</span> <span class="math display">\[\quad\quad\quad\quad\quad\quad=\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)x_i=0\]</span> <span class="math display">\[\sum_{i=1}^{n}y_ix_i=(\sum_{i=1}^{n}x_i)\beta_0+(\sum_{i=1}^{n}x_i^2)\beta_1  \]</span></p>
+<p> </p>
+<p> </p>
+<p><span class="math display">\[\frac{\partial L(\beta_o, \beta_1, \sigma^2)}{\partial \sigma^2}\quad=\frac{n}{\sigma^2}-\frac{1}{\sigma^4}\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)=0\]</span></p>
+<p>Assim temos que os estimadores para os parâmetros seguem abaixo. Para mais detalhes desta etapa clique <a href="">aqui</a></p>
+<p><span class="math display">\[\hat{\beta}_1 = \frac{\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})}{\sum_{i=1}^{n}(X_i-\bar{X})}\]</span><br />
+<span class="math display">\[\hat{\beta}_0=\bar{Y}-\beta_1\bar{X}\]</span><br />
+<span class="math display">\[\hat{\sigma}^2=\frac{\sum_{i=1}^{n}(Y_i-Y_i)^2}{n}\]</span><br />
+Os dois metodos juntos (pah 721)</p>
+</div>
+<div id="análise-de-resíduos-openintro" class="section level1">
+<h1>1.3 Análise de Resíduos (Openintro)</h1>
+<p>a)analise de residuos a1) pq fazer a2) como fazer</p>
+<div id="análise-de-variância" class="section level3">
+<h3>Análise de Variância</h3>
+<p>a)pq fazer b)exemplos c)como fazer</p>
+</div>
+<div id="intervalos-de-confiança" class="section level3">
+<h3>Intervalos de confiança</h3>
+<pre><code>  a)  exemplos de uso
+  b) como fazer</code></pre>
+</div>
+<div id="teste-de-hipótese" class="section level3">
+<h3>Teste de Hipótese</h3>
+<pre><code>  a)  exemplos de uso
+  b) como fazer</code></pre>
+</div>
+<div id="predição" class="section level3">
+<h3>Predição</h3>
+<pre><code>  a)  exemplos de uso
+  b) como fazer</code></pre>
+</div>
+<div id="diagnostico" class="section level3">
+<h3>Diagnostico</h3>
+<p>a)pq fazer b)como fazer ### Transformações a)pq fazer b)exemplos c)como fazer</p>
+<p> </p>
+</div>
+<div id="regressão-linear-multipla" class="section level2">
+<h2>Regressão Linear Multipla</h2>
+<div id="forma-matricial" class="section level3">
+<h3>Forma matricial</h3>
+</div>
+<div id="estimação-dos-parâmetros-1" class="section level3">
+<h3>Estimação dos parâmetros</h3>
+</div>
+<div id="análise-de-variância-1" class="section level3">
+<h3>Análise de Variância</h3>
+</div>
+<div id="predição-1" class="section level3">
+<h3>Predição</h3>
+</div>
+<div id="teste-de-hipótese-1" class="section level3">
+<h3>Teste de Hipótese</h3>
+</div>
+<div id="intervalo-de-confiança" class="section level3">
+<h3>Intervalo de Confiança</h3>
 <p>Soma extra de quadrados(?)<br />
 Coef de determinação parcial (?)<br />
 Reg multi padronizada (?)<br />
 Multicolineariedade(?)<br />
 Medidas de influência e Alavancagem (?) *Caio</p>
-<div id="regressão-polinomial" class="section level4">
-<h4>Regressão Polinomial</h4>
+<p> </p>
+</div>
+</div>
+<div id="regressão-polinomial" class="section level2">
+<h2>Regressão Polinomial</h2>
 <p>Regressão com intervenção (?)<br />
 Região de confiança (?)<br />
 Teste de Hip Linear (?)</p>
+<p> </p>
 </div>
-</div>
-<div id="seleção-de-modelos" class="section level3">
-<h3>Seleção de modelos</h3>
+<div id="seleção-de-modelos" class="section level2">
+<h2>Seleção de modelos</h2>
 <p>Regressão Parcial (?)<br />
 Inflação da variância (?)</p>
+<p> </p>
 </div>
-<div id="regressão-não-linear" class="section level3">
-<h3>Regressão Não-Linear</h3>
+<div id="regressão-não-linear" class="section level2">
+<h2>Regressão Não-Linear</h2>
 <p>Regressão logistica(?) *openintro</p>
-</div>
 </div>
 </div>
 <div id="referência" class="section level1">
 <h1>Referência</h1>
+<p> </p>
 <ul>
 <li>Análise de Regressão</li>
 </ul>
-<p><strong>Azevedo, Caio L. N.</strong>. ME 613A - Análise de regressão, Primeiro Semestre 2019. 2019. IMECC - UNICAMP. Disponível em: <a href="https://www.ime.unicamp.br/~cnaber/Material_ME613_1S_2019.htm">https://www.ime.unicamp.br/~cnaber/Material_ME613_1S_2019.htm</a>. Acessado em: Julho à X de 2021</p>
+<p><strong>Azevedo, Caio L. N.</strong>. ME 613A - Análise de regressão, Primeiro Semestre 2019. IMECC - UNICAMP. Disponível em: <a href="https://www.ime.unicamp.br/~cnaber/Material_ME613_1S_2019.htm">https://www.ime.unicamp.br/~cnaber/Material_ME613_1S_2019.htm</a>. Acessado em: Julho à X de 2021</p>
 <p><strong>Carvalho, B</strong>. ME613: Análise de Regressão. Github. 2021. Disponível em: <a href="http://me613-unicamp.github.io/">http://me613-unicamp.github.io/</a>. Acessado em: Julho à X de 2021</p>
 <p><strong>Caffo, B</strong>. (2019). Regression models for data science in R. Leanpub. 2019. Disponível em: <a href="https://leanpub.com/regmods/read">https://leanpub.com/regmods/read</a>. Acessado em: Julho à X de 2021</p>
 <p><strong>Diez, D.; Rundel, M. C.; Barr, C. D.</strong>. Openintro Statistics. Quarta edição. Atualizado em 12 de Novembro de 2019. Versão online gratuita. Disponível em: <a href="https://www.openintro.org/book/os/">https://www.openintro.org/book/os/</a>. Acessado em: Julho à X de 2021</p>
+<p><strong>Kutner, M. H.; Nachtsheim, C. J.;Neter, J.; Li, W.</strong>.Applied Linear Statistical Models. Quinta edição. 2005.</p>
+<p>João L. F. Batista. Análise de Regressão Aplicada.2004. Departamento de Ciências Florestais ESALQ - USP</p>
 </div>
 
 
