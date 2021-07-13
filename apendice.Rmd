@@ -19,6 +19,7 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 &nbsp;
 
+<div id="demo1"></div>
 # Demonstração 1
 
 Manipulações algébricas a partir das Equações Normais para encontrar os estimadores dos parâmetros $\beta$
@@ -96,6 +97,7 @@ Como $\hat{Y}_i=\beta_0-\beta_1X_i$, então:
 
 $$\hat{\sigma}^2=\frac{\sum_{i=1}^{n}(Y_i-\hat{Y}_i)^2}{n}$$
 
+<div id="demo2"></div>
 # Demonstração 2
 
 Lineariedade dos estimadores de mínimos quadrados.
@@ -133,15 +135,17 @@ Renomeando $z_i^*=\frac{1}{n}-z_iY_i\bar{X}$, temos:
 
 $$\qquad = \sum_{i=1}^{n}z_i^*Y_i$$
 
-
+<div id="demo3"></div>
 # Demonstração 3
 
 Valor esperado dos parâmetros
 
+<div id="demo4"></div>
 # Demonstração 4
 
 Variância dos parâmetros
 
+<div id="demo5"></div>
 # Demonstração 5
 
 Covariância dos parâmetros

@@ -169,7 +169,7 @@ $$\sum_{i=1}^{n}X_iY_i\quad=\hat{\beta}_0\sum_{i=1}^{n}X_i+\hat{\beta}_1\sum_{i=
 &nbsp;
 
 
-A partir delas conseguim ao isolar os parâmetros e obter as estimações. Para mais detalhes desta etapa, clique [aqui](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstra%C3%A7%C3%A3o_1)
+A partir delas conseguim ao isolar os parâmetros e obter as estimações. Para mais detalhes desta etapa, clique [aqui](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_1)
 
 &nbsp;
 
@@ -206,9 +206,9 @@ Entretanto, precisamos de certos **requisitos** para poder usar ele:
 
 # 1.2.1.1 Propriedades.
 
-Os estimadores $\hat{\beta}$ obtidos pelo método de método de mínimos quadrados são funções lineares de Y (veja a demonstração matemática [aqui](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstra%C3%A7%C3%A3o_2)). E segundo o Teorema de Gauss Markov, dado as condições do modelo de regressão linear, o método de mínimos quadrados:
+Os estimadores $\hat{\beta}$ obtidos pelo método de método de mínimos quadrados são funções lineares de Y (veja a demonstração matemática [aqui](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_2). E segundo o Teorema de Gauss Markov, dado as condições do modelo de regressão linear, o método de mínimos quadrados:
 
-* Tem estimadores $\beta_0$ e $\beta_1$ não viesados, i.e., o valor esperado do estimador é ao próprio arametro que foi estimado, por exemplo $E(\hat{\theta})=\theta$. Isso independente da distribuição de probabilidade desses erros. Para a demonstração, veja mais [aqui](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstra%C3%A7%C3%A3o_3)
+* Tem estimadores $\beta_0$ e $\beta_1$ não viesados, i.e., o valor esperado do estimador é ao próprio arametro que foi estimado, por exemplo $E(\hat{\theta})=\theta$. Isso independente da distribuição de probabilidade desses erros. Para a demonstração, veja mais [aqui](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_3)
 
 * Tem a mínima variância entre todos os estimadores não viesados e lineares. Logo eles são os mais precisos entre esse tipo de estimador.
 
@@ -265,7 +265,7 @@ $$\sum_{i=1}^{n}y_ix_i=(\sum_{i=1}^{n}x_i)\beta_0+(\sum_{i=1}^{n}x_i^2)\beta_1  
 
 $$\frac{\partial L(\beta_o, \beta_1, \sigma^2)}{\partial \sigma^2}\quad=\frac{n}{\sigma^2}-\frac{1}{\sigma^4}\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)=0$$
 
-Assim temos que os estimadores para os parâmetros seguem abaixo. Para mais detalhes desta etapa clique [aqui](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstra%C3%A7%C3%A3o_1).
+Assim temos que os estimadores para os parâmetros seguem abaixo. Para mais detalhes desta etapa clique [aqui](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_1).
 
 $$\hat{\beta}_1 = \frac{\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})}{\sum_{i=1}^{n}(X_i-\bar{X})}$$  
 $$\hat{\beta}_0=\bar{Y}-\beta_1\bar{X}$$  
