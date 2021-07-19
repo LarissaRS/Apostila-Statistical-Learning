@@ -135,11 +135,15 @@ $$\sum_{i=1}^{n}X_iY_i = \beta_0\sum_{i=1}^{n}X_i-\beta_1\sum_{i=1}^{n}X_i^2$$
   Essa equações, também chamadas de equações normais, podem ser derivadas em relação aos parâmetros:
 
 $$\frac{\partial Q}{\partial \beta_0}=-2\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)$$   
-$$\frac{\partial Q}{\partial \beta_1}=-2\sum_{i=1}^{n}X_i(Y_i-\beta_0-\beta_1X_i)$$      
-<div style="float:right;max-width:35%; max-height: 35%;" markdown="1"> ![](images/note1.jpg)
-</div> 
+$$\frac{\partial Q}{\partial \beta_1}=-2\sum_{i=1}^{n}X_i(Y_i-\beta_0-\beta_1X_i)$$        
+
 
    Igualando essas derivadas à zero, encontramos os valores de $\beta_0$ e $\beta_1$ que minimizam $Q$:
+ 
+&nbsp;
+
+<div style="float:right;max-width:35%; max-height: 35%;" markdown="1"> ![](images/note1.jpg)
+</div> 
 
 $$-2\sum_{i=1}^{n}(Y_i-\hat{\beta}_0-\hat{\beta}_1X_i)=0$$
 $$-2\sum_{i=1}^{n}X_i(Y_i-\hat{\beta}_0-\hat{\beta}_1X_i)=0$$
@@ -169,7 +173,7 @@ $$\sum_{i=1}^{n}X_iY_i\quad=\hat{\beta}_0\sum_{i=1}^{n}X_i+\hat{\beta}_1\sum_{i=
 &nbsp;
 
 
-A partir delas conseguim ao isolar os parâmetros e obter as estimações. Para mais detalhes desta etapa, clique [aqui](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_1)
+A partir delas conseguim ao isolar os parâmetros e obter as estimações. Para mais detalhes desta etapa, veja a [Apêndice: Demonstração 1](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_1).
 
 &nbsp;
 
@@ -206,19 +210,19 @@ Entretanto, precisamos de certos **requisitos** para poder usar ele:
 
 # 1.2.1.1 Propriedades
 
-Os estimadores $\hat{\beta}$ obtidos pelo método de método de mínimos quadrados são funções lineares de Y (veja a demonstração matemática [aqui](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_2). E segundo o Teorema de Gauss Markov, dado as condições do modelo de regressão linear, o método de mínimos quadrados:
+Os estimadores $\hat{\beta}$ obtidos pelo método de método de mínimos quadrados são funções lineares de Y ([Apêndice: Demonstação 2](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_2)). E segundo o Teorema de Gauss Markov, dado as condições do modelo de regressão linear, o método de mínimos quadrados:
 
-* Tem estimadores $\beta_0$ e $\beta_1$ não viesados, i.e., o valor esperado do estimador é ao próprio arametro que foi estimado, por exemplo $E(\hat{\theta})=\theta$. Isso independente da distribuição de probabilidade desses erros. Para a demonstração, veja mais [aqui](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_3)
+* Tem estimadores $\beta_0$ e $\beta_1$ não viesados, i.e., o valor esperado do estimador é ao próprio arametro que foi estimado, por exemplo $E(\hat{\theta})=\theta$. Isso independente da distribuição de probabilidade desses erros ([Apêndice: Demonstação 3](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_3)).
 
 * Tem a mínima variância entre todos os estimadores não viesados e lineares. Logo eles são os mais precisos entre esse tipo de estimador.
 
 
-# Propriedades do modelo
+# 1.2.1.2 Propriedades do modelo
 
-# 1.2.1.2 R²
+# 1.2.1.3 R²
 
 
-# 1.2.1.3 Exemplo
+# 1.2.1.4 Exemplo
 
 &nbsp;
 
@@ -251,8 +255,7 @@ $$\frac{\partial L(\beta_o, \beta_1, \sigma^2)}{\partial \beta_0}\quad= -\frac{1
 
 $$\qquad\qquad\quad=\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)=0$$
 $$\sum_{i=1}^{n}y_i=n\beta_0+(\sum_{i=1}^{n}x_i)\beta_1$$
-
-&nbsp;
+$$\hat{\beta}_0=\bar{Y}-\beta_1\bar{X}$$  
 
 &nbsp;
 
@@ -260,17 +263,20 @@ $$\frac{\partial L(\beta_o, \beta_1, \sigma^2)}{\partial \beta_1} \quad= -\frac{
 $$\quad\quad\quad\quad\quad\quad=\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)x_i=0$$
 $$\sum_{i=1}^{n}y_ix_i=(\sum_{i=1}^{n}x_i)\beta_0+(\sum_{i=1}^{n}x_i^2)\beta_1  $$
 
-&nbsp;
+$$\hat{\beta}_1 = \frac{\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})}{\sum_{i=1}^{n}(X_i-\bar{X})}$$ 
 
 &nbsp;
 
-$$\frac{\partial L(\beta_o, \beta_1, \sigma^2)}{\partial \sigma^2}\quad=\frac{n}{\sigma^2}-\frac{1}{\sigma^4}\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)=0$$
+$$\frac{\partial L(\beta_o, \beta_1, \sigma^2)}{\partial \sigma^2}=\frac{n}{\hat{\sigma}^2}-\frac{1}{\hat{\sigma}^4}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)=0$$
 
-Assim temos que os estimadores para os parâmetros seguem abaixo. Para mais detalhes desta etapa clique [aqui](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_1).
+$$\frac{n}{\hat{\sigma}^2}=\frac{1}{\hat{\sigma}^4}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)$$
+$$n=\frac{1}{\hat{\sigma}^2}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)$$
 
-$$\hat{\beta}_1 = \frac{\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})}{\sum_{i=1}^{n}(X_i-\bar{X})}$$  
-$$\hat{\beta}_0=\bar{Y}-\beta_1\bar{X}$$  
-$$\hat{\sigma}^2=\frac{\sum_{i=1}^{n}(Y_i-Y_i)^2}{n}$$  
+$$\hat{\sigma}^2=\frac{1}{n}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)^2$$
+Como $\hat{Y}_i=\beta_0-\beta_1X_i$, então:
+
+$$\hat{\sigma}^2=\frac{\sum_{i=1}^{n}(Y_i-\hat{Y}_i)^2}{n}$$
+
 Os dois metodos juntos (pah 721)
       
 # 1.3 Análise de Resíduos (Openintro)

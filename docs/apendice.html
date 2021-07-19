@@ -351,8 +351,8 @@ div.tocify {
 
 <p>[EM CONSTRUÇÃO]</p>
 <p> </p>
-<div id="demo" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> Demo</h1>
+<div id="demonstração-1" class="section level1">
+<h1>Demonstração 1</h1>
 <p> </p>
 <p>Manipulações algébricas a partir das Equações Normais para encontrar os estimadores dos parâmetros de <span class="math inline">\(\beta_0\)</span> e <span class="math inline">\(\beta_1\)</span>:</p>
 <ul>
@@ -392,8 +392,8 @@ div.tocify {
 
 </div>
 </div>
-<div id="demo-1" class="section level1" number="2">
-<h1 number="2"><span class="header-section-number">2</span> Demo</h1>
+<div id="demonstração-2" class="section level1">
+<h1>Demonstração 2</h1>
 <p> </p>
 <p>Lineariedade dos estimadores de mínimos quadrados.</p>
 <ul>
@@ -413,8 +413,8 @@ div.tocify {
 <p><span class="math display">\[\hat{\beta}_1 = \sum_{i=1}^{n}z_i^*Y_i\]</span></p>
 <p> </p>
 </div>
-<div id="demo-2" class="section level1" number="3">
-<h1 number="3"><span class="header-section-number">3</span> Demo</h1>
+<div id="demonstração-3" class="section level1">
+<h1>Demonstração 3</h1>
 <p> </p>
 <p>Valor esperado dos parâmetros de <span class="math inline">\(\beta_0\)</span> ,<span class="math inline">\(\beta_1\)</span>:</p>
 <p> </p>
@@ -435,9 +435,9 @@ div.tocify {
 <ul>
 <li>Para <span class="math inline">\(\hat{\beta}_0\)</span>:</li>
 </ul>
-<p><span class="math inline">\(\qquad\quad\qquad E(\hat{\beta}_0)=E(\bar{Y}-\hat{\beta}_1\bar{X})\)</span></p>
-<p><span class="math inline">\(\qquad\quad\qquad\quad\qquad=E\bigg(\frac{\sum_{i=1}^{n}Y_i}{n}\bigg)-\hat{\beta}_1\bar{X}\quad\qquad\quad\)</span></p>
-<p><span class="math inline">\(\qquad\quad\qquad\qquad\quad=\frac{1}{n}E\bigg(\sum_{i=1}^{n}Y_i\bigg)-\hat{\beta}_1\bar{X}\quad\)</span></p>
+<p><span class="math inline">\(\qquad\quad\qquad\qquad E(\hat{\beta}_0)=E(\bar{Y}-\hat{\beta}_1\bar{X})\)</span></p>
+<p><span class="math inline">\(\qquad\quad\qquad\quad\qquad\qquad = E\bigg(\frac{\sum_{i=1}^{n}Y_i}{n}\bigg)-\hat{\beta}_1\bar{X}\quad\qquad\quad\)</span></p>
+<p><span class="math inline">\(\qquad\quad\qquad \qquad\qquad\quad=\frac{1}{n}E\bigg(\sum_{i=1}^{n}Y_i\bigg)-\hat{\beta}_1\bar{X}\quad\)</span></p>
 <div style="float:right;max-width:35%; max-height: 35%;" markdown="1">
 <p><img src="images/note3.jpg" /></p>
 </div>
@@ -448,8 +448,8 @@ div.tocify {
 <p>  <span class="math display">\[E(\hat{\beta}_0)=\beta_0\]</span></p>
 <p> </p>
 </div>
-<div id="demo-3" class="section level1" number="4">
-<h1 number="4"><span class="header-section-number">4</span> Demo</h1>
+<div id="demonstração-4" class="section level1">
+<h1>Demonstração 4</h1>
 <p> </p>
 <p>Variância dos parâmetros</p>
 <p> </p>
@@ -466,21 +466,14 @@ div.tocify {
 <p><span class="math display">\[\qquad\qquad=\sigma^2\sum_{i=1}^{n}\Bigg(\frac{(X_i-\bar{X})}{\sum_{i=1}^{n}(X_i-\bar{X})^2}\frac{(X_i-\bar{X})}{\sum_{i=1}^{n}(X_i-\bar{X})^2}\Bigg)\]</span> <span class="math display">\[\qquad\qquad=\sigma^2\Bigg(\frac{\sum_{i=1}^{n}(X_i-\bar{X})^2}{\sum_{i=1}^{n}(X_i-\bar{X})^2(X_i-\bar{X})^2}\Bigg)\]</span></p>
 <p><span class="math display">\[Var(\hat{\beta}_1)=\frac{\sigma^2}{\sum_{i=1}^{n}(X_i-\bar{X})^2}\]</span></p>
 </div>
-<div id="demo-4" class="section level1" number="5">
-<h1 number="5"><span class="header-section-number">5</span> Demo</h1>
+<div id="demonstração-5" class="section level1">
+<h1>Demonstração 5</h1>
 <p> </p>
 <p>Covariância dos parâmetros</p>
 <p> </p>
-<p>Manipulações algébricas a partir da derivada parcial da função de máxima verossimilhança para encontrar o estimar da variância.</p>
-<p> </p>
-<p><span class="math display">\[\frac{\partial L(\beta_o, \beta_1, \sigma^2)}{\partial \sigma^2}=\frac{n}{\hat{\sigma}^2}-\frac{1}{\hat{\sigma}^4}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)=0\]</span></p>
-<p><span class="math display">\[\frac{n}{\hat{\sigma}^2}=\frac{1}{\hat{\sigma}^4}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)\]</span> <span class="math display">\[n=\frac{1}{\hat{\sigma}^2}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)\]</span></p>
-<p><span class="math display">\[\hat{\sigma}^2=\frac{1}{n}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)^2\]</span> Como <span class="math inline">\(\hat{Y}_i=\beta_0-\beta_1X_i\)</span>, então:</p>
-<p><span class="math display">\[\hat{\sigma}^2=\frac{\sum_{i=1}^{n}(Y_i-\hat{Y}_i)^2}{n}\]</span></p>
-<p> </p>
 </div>
-<div id="demo-5" class="section level1" number="6">
-<h1 number="6"><span class="header-section-number">6</span> Demo</h1>
+<div id="demonstração-6" class="section level1">
+<h1>Demonstração 6</h1>
 <p> </p>
 <p>A)Uma das propriedades da média aritimética é que <span class="math inline">\(\sum_{i=1}^{n}(X_i-\bar{X})=0\)</span>, isso porque</p>
 <p><span class="math display">\[\bar{X}= \frac{\sum_{i=1}^{n}X_i}{n} \quad =&gt; \quad\sum_{i=1}^{n}X_i=n\bar{X}\]</span>,</p>
@@ -501,8 +494,8 @@ div.tocify {
 <p><span class="math display">\[\qquad \qquad=1\]</span></p>
 <p> </p>
 </div>
-<div id="demo-6" class="section level1" number="7">
-<h1 number="7"><span class="header-section-number">7</span> Demo</h1>
+<div id="demonstração-7" class="section level1">
+<h1>Demonstração 7</h1>
 <p>Esperança e variancia do estimador da variancia:</p>
 <p> </p>
 <ul>

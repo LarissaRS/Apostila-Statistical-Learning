@@ -5,7 +5,7 @@ output:
     toc: true
     toc_float: true
     collapsed: false
-    number_sections: true
+    number_sections: false
     toc_depth: 1
     #code_folding: hide
 ---
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 &nbsp;
 
-# Demo
+# Demonstração 1
 
 &nbsp;
 
@@ -83,7 +83,7 @@ $$\hat{\beta}_1=\frac{\sum_{i=1}^{n}(Y_i-\bar{Y})(X_i-\bar{X})}{\sum_{i=1}^{n}(X
 &nbsp;
 
 <div id="demo2"></div>
-# Demo
+# Demonstração 2
 
 &nbsp;
 
@@ -124,7 +124,7 @@ $$\hat{\beta}_1 = \sum_{i=1}^{n}z_i^*Y_i$$
 
 &nbsp;
 
-# Demo
+# Demonstração 3
 
 &nbsp;
 
@@ -158,11 +158,11 @@ $$E(\hat{\beta}_1)={\beta}_1$$
 
 * Para $\hat{\beta}_0$:
 
-$\qquad\quad\qquad E(\hat{\beta}_0)=E(\bar{Y}-\hat{\beta}_1\bar{X})$  
+$\qquad\quad\qquad\qquad  E(\hat{\beta}_0)=E(\bar{Y}-\hat{\beta}_1\bar{X})$  
 
-$\qquad\quad\qquad\quad\qquad=E\bigg(\frac{\sum_{i=1}^{n}Y_i}{n}\bigg)-\hat{\beta}_1\bar{X}\quad\qquad\quad$  
+$\qquad\quad\qquad\quad\qquad\qquad = E\bigg(\frac{\sum_{i=1}^{n}Y_i}{n}\bigg)-\hat{\beta}_1\bar{X}\quad\qquad\quad$  
 
-$\qquad\quad\qquad\qquad\quad=\frac{1}{n}E\bigg(\sum_{i=1}^{n}Y_i\bigg)-\hat{\beta}_1\bar{X}\quad$
+$\qquad\quad\qquad \qquad\qquad\quad=\frac{1}{n}E\bigg(\sum_{i=1}^{n}Y_i\bigg)-\hat{\beta}_1\bar{X}\quad$
 
 <div style="float:right;max-width:35%; max-height: 35%;" markdown="1"> ![](images/note3.jpg)
 </div>
@@ -181,7 +181,7 @@ $$E(\hat{\beta}_0)=\beta_0$$
 
 &nbsp;
 
-# Demo
+# Demonstração 4
 
 &nbsp;
 
@@ -212,7 +212,7 @@ $$\qquad\qquad=\sigma^2\Bigg(\frac{\sum_{i=1}^{n}(X_i-\bar{X})^2}{\sum_{i=1}^{n}
 
 $$Var(\hat{\beta}_1)=\frac{\sigma^2}{\sum_{i=1}^{n}(X_i-\bar{X})^2}$$
 
-# Demo
+# Demonstração 5
 
 &nbsp;
 
@@ -220,23 +220,7 @@ Covariância dos parâmetros
 
 &nbsp;
 
-Manipulações algébricas a partir da derivada parcial da função de máxima verossimilhança para encontrar o estimar da variância.
-
-&nbsp;
-
-$$\frac{\partial L(\beta_o, \beta_1, \sigma^2)}{\partial \sigma^2}=\frac{n}{\hat{\sigma}^2}-\frac{1}{\hat{\sigma}^4}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)=0$$
-
-$$\frac{n}{\hat{\sigma}^2}=\frac{1}{\hat{\sigma}^4}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)$$
-$$n=\frac{1}{\hat{\sigma}^2}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)$$
-
-$$\hat{\sigma}^2=\frac{1}{n}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)^2$$
-Como $\hat{Y}_i=\beta_0-\beta_1X_i$, então:
-
-$$\hat{\sigma}^2=\frac{\sum_{i=1}^{n}(Y_i-\hat{Y}_i)^2}{n}$$
-
-&nbsp;
-
-# Demo
+# Demonstração 6
 
 &nbsp;
 
@@ -279,7 +263,7 @@ $$\qquad \qquad=1$$
 
 &nbsp;
 
-# Demo
+# Demonstração 7
 
 Esperança e variancia do estimador da variancia:
 
