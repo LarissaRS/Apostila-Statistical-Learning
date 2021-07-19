@@ -204,7 +204,7 @@ Entretanto, precisamos de certos **requisitos** para poder usar ele:
 <div style="float:center;max-width:50%; max-height: 50%;" markdown="1"> ![](images/autocor.jpg)
 </div>
 
-# 1.2.1.1 Propriedades.
+# 1.2.1.1 Propriedades
 
 Os estimadores $\hat{\beta}$ obtidos pelo método de método de mínimos quadrados são funções lineares de Y (veja a demonstração matemática [aqui](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_2). E segundo o Teorema de Gauss Markov, dado as condições do modelo de regressão linear, o método de mínimos quadrados:
 
@@ -212,10 +212,11 @@ Os estimadores $\hat{\beta}$ obtidos pelo método de método de mínimos quadrad
 
 * Tem a mínima variância entre todos os estimadores não viesados e lineares. Logo eles são os mais precisos entre esse tipo de estimador.
 
-Além disso temos que:
 
-* $$
-# 1.2.1.2 ANOVA e R²
+# Propriedades do modelo
+
+# 1.2.1.2 R²
+
 
 # 1.2.1.3 Exemplo
 
