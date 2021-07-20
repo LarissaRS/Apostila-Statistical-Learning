@@ -263,7 +263,7 @@ Applied regression: pag 54
 
 Os estimadores $\hat{\beta}$ obtidos pelo método de método de mínimos quadrados são funções lineares de Y ([Apêndice: Demonstação 2](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_2)). E segundo o Teorema de Gauss Markov, dado as condições do modelo de regressão linear, o método de mínimos quadrados:
 
-* Tem estimadores $\beta_0$ e $\beta_1$ não viesados, i.e., o valor esperado do estimador é ao próprio arametro que foi estimado, por exemplo $E(\hat{\theta})=\theta$. Isso independente da distribuição de probabilidade desses erros ([Apêndice: Demonstação 3](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_3)).
+* Tem estimadores $\beta_0$ e $\beta_1$ não viesados, i.e., o valor esperado do estimador é ao próprio arametro que foi estimado, por exemplo $E(\hat{\theta})=\theta$. Isso independente da distribuição de probabilidade desses erros ([Apêndice: Demonstação 3](https://larissars.github.io/Apostilas-estatistica/apendice.html##Demonstração_3)).
 
 * Tem a mínima variância entre todos os estimadores não viesados e lineares. Logo eles são os mais precisos entre esse tipo de estimador.
 

@@ -126,7 +126,7 @@ $$\hat{\beta}_1 = \sum_{i=1}^{n}z_i^*Y_i$$
 
 &nbsp;
 
-# Demonstração 3
+## Demonstração 3
 
 &nbsp;
 
