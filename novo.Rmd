@@ -19,7 +19,7 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 &nbsp;
 
-# **Análise de Regressão**
+# Análise de Regressão
 
 &nbsp;
 
@@ -34,6 +34,10 @@ O termo regressão foi criado por Francis Galton no século 19 durante seu estud
 &nbsp;
 
 # 1. Regressão Linear Simples  
+
+Applied Linear Statistical Models 5th pag 33-34
+
+Colocar figura 1.4 do Applied Linear Statistical Models 5th
 
 Nesta sessão estudaremos as técnicas de regresão aplicadas à duas variaveis que relacionam de forma linear, isto é, essa relação pode ser descrita por uma reta.
 
@@ -93,8 +97,31 @@ onde:
  - $\beta_0$ é o intercepto;  
  - $\beta_1$ é o incremento de $X_i$ em $Y_i$;
  - $X$ são as $i$ variáveis independetes (ou conhecidas); 
- - $\varepsilon_i$ são os erros de cada observação $X_i$;
+ - $\varepsilon_i$ são os erros aleatórios associados a cada observação $X_i$;
  - $i=1,2,3...$.
+ 
+Quando aplicamos este modelo aos nosso dados, teremos os **valores ajustados** ou **estimados**, i.e.:
+
+$$\hat{Y_i}= \hat{\beta_0}+\hat{\beta_1}X_i$$
+Nestes valores ajustados estão contidos os **resíduos**, que são a diferença entre o valor verdadeiro da variável resposta e o valor estimado pelo modelo, respectivamente:
+
+$$\epsilon_i=Y_i-\hat{Y_i}$$
+$$\qquad\qquad\quad=Y_i-\hat{\beta_0}+\hat{\beta_1}X_i$$
+
+Vale lembrar que **erro** e **resíduo** não são a mesma coisa:
+
+* O erro aleatório $\varepsilon_i$ do modelo se refere ao contexto populacional, antes do ajuste do modelo e amostragem.
+* O resíduo $\epsilon_i$ se refere ao contexto amostral, após o modelo ser ajustado com base na amostra coletada.
+
+A primeira suposição a respeito deste modelo a respeito dos erros:
+
+* O valor esperado dos erros é sempre zero: $E[\varepsilon_i]=0 \quad\forall i$;   
+* Sua variância é sempre constante $Var[\varepsilon_i]=\sigma^2\quad\forall i$;  
+* Eles não são correlacionados: $Cov(\varepsilon_i, \varepsilon_j)=0 \quad \forall\quad i \ne j$.
+* Eles seguem a distribuição de probabilidade normal e são independentes e identicamente distribuidos: $\varepsilon \stackrel{iid}{\sim} N(0, \sigma^2)$
+
+<div style="float:centre; max-width:100%; max-height: 80%;" markdown="1"> ![](images/note4.png)
+</div> 
 
 Voltando ao exemplo, na figura abaixo temos as representações dos parâmetros nas partes em destaque: $\beta_0$ como intercepto, isto é, ponto em que a reta corta o eixo $Y$; $\beta_1$ como incremento em $Y$ para cada uma unidade de $X$; e por fim $\varepsilon_i$ como a distância entre a reta de regressão e a observação $X_i$.
 
@@ -108,6 +135,28 @@ para $i=1,2,...,24,25$.
 
 &nbsp;
 
+# 1.2 Propriedades do modelo
+
+Agora que conhecemos o modelo, vamos conferir algumas de suas propriedades. Sabemos então qe $Y_i$ são as variáveis resposta e que $\varepsilon_i$ são variáveis aleatórias correspondentes aos erros. Como o valor esperado de $\varepsilon_i$ é sempre zero, então:
+
+<div style="float:right;max-width:50%; max-height: 70%;" markdown="1"> ![](images/note5.png)
+</div>
+
+$$E[Y_i]=E[\beta_0+\beta_1X_i+\varepsilon_i]$$
+$$\qquad\quad=E[\beta_0+\beta_1X_i]+E[\varepsilon_i]$$
+$$\qquad\quad=E[\beta_0+\beta_1X_i]+0\quad$$
+$$\qquad=\beta_0+\beta_1X_i\quad\qquad$$
+ 
+&nbsp;
+
+$\qquad\qquad Var[Y_i]=Var[\beta_0+\beta_1X_i+\varepsilon_i]$  
+
+$\qquad\qquad\qquad\quad = Var[\varepsilon_i]\qquad\qquad$  
+
+$\qquad\qquad\qquad\quad = \sigma^2\qquad\qquad$  
+
+Além disso, como os erros $\varepsilon_i$ e $\varepsilon_j$ não correlacionados, então as respostas $Y_i$ e $Y_j$ também não serão.
+
 # 1.2 Estimação dos parâmetros 
  
 &nbsp;
@@ -116,7 +165,7 @@ Mas afinal, como determinamos os valores de $\beta_0$ e $\beta_1$? Para resolver
  
 &nbsp;
 
-# 1.2.1 Método de Mínimos Quadrados
+# 1.2.1 Método de Mínimos Quadrados (MMQ)
  
 &nbsp;
 
@@ -208,7 +257,9 @@ Entretanto, precisamos de certos **requisitos** para poder usar ele:
 <div style="float:center;max-width:50%; max-height: 50%;" markdown="1"> ![](images/autocor.jpg)
 </div>
 
-# 1.2.1.1 Propriedades
+# 1.2.1.1 Propriedades dos estimadores de MMQ
+
+Applied regression: pag 54
 
 Os estimadores $\hat{\beta}$ obtidos pelo método de método de mínimos quadrados são funções lineares de Y ([Apêndice: Demonstação 2](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_2)). E segundo o Teorema de Gauss Markov, dado as condições do modelo de regressão linear, o método de mínimos quadrados:
 
@@ -216,17 +267,28 @@ Os estimadores $\hat{\beta}$ obtidos pelo método de método de mínimos quadrad
 
 * Tem a mínima variância entre todos os estimadores não viesados e lineares. Logo eles são os mais precisos entre esse tipo de estimador.
 
+Além das informações assumidas, os estimadores de mínimos quadrados tem distribuição de probabilidade Normal. Segue abaixo o valor esperado e a variância de $\hat{\beta_0}$ e $\hat{\beta_1}$ respectivamente:  
 
-# 1.2.1.2 Propriedades do modelo
+* $E[\hat{\beta_0}]= \beta_0$  
+* $Var[\hat{\beta_0}]=\sigma^2\Bigg[\frac{1}{n}+\frac{\bar{X}^2}{\sum_{i=0}^{n}(X_i-\bar{X}^2)}\Bigg]$  
+* $\hat{\beta_0} \sim N\Bigg(\beta_0, \sigma^2\Bigg[\frac{1}{n}+\frac{\bar{X}^2}{\sum_{i=0}^{n}(X_i-\bar{X}^2)}\Bigg]\Bigg)$  
+ 
+&nbsp;
 
-# 1.2.1.3 R²
+* $E[\hat{\beta_1}]=\beta_1$  
+* $Var[\hat{\beta_1}]=\frac{\sigma^2}{\sum_{i=0}^{n}(X_i-\bar{X})^2}$  
+* $\hat{\beta_0} \sim N\Bigg(\beta_1,\Bigg)$  
 
+Veja mais detalhes sobre os resultados acima em [Demonstração X]().  
 
-# 1.2.1.4 Exemplo
+# 1.2.1.3 Exemplo
 
 &nbsp;
 
-# 1.2.2 Método da Máxima Verossimilhança
+# 1.2.2 Método da Máxima Verossimilhança (MMV)
+
+Applied Linear Statistical Models 5th (pag 51 - pag 56)  
+Aplied regression (pag 78 - pag 80) & pag 88 (capitulo2)
  
  O método de máxima verossilimilhança utiliza o produtos das densidades das distribuição de probabilidade de $Y_i$ como uma medida para a *consistencia* dos parâmetros para aquela amostra. Assim o método escolhe os valores máximos da verossimilhança estimada, tal que os valores dos paramêtros sejam mais consistentes. 
  
@@ -277,19 +339,43 @@ Como $\hat{Y}_i=\beta_0-\beta_1X_i$, então:
 
 $$\hat{\sigma}^2=\frac{\sum_{i=1}^{n}(Y_i-\hat{Y}_i)^2}{n}$$
 
-Os dois metodos juntos (pah 721)
+# 1.2.2.1 Propriedades dos estimadores de MMV
+
+Aplied regression (pag 80 - pag 82)
+
+
+# 1.2.3 Os dois metodos juntos (pah 721)
       
 # 1.3 Análise de Resíduos (Openintro)
+
+Applied Linear Statistical Models 5th pg 126
+Applied regresion pag 53,54
+
   a)analise de residuos
       a1) pq fazer
       a2) como fazer
 
 ### Análise de Variância
+
+Applied regresion pag 52,65-68
+Applied Linear Statistical Models 5th pag 87-97
+
   a)pq fazer
   b)exemplos
   c)como fazer
   
+# R²
+
+Applied Linear Statistical Models 5th pag 98
+
+Applied regresion pag 55/64-65
+
 ### Intervalos de confiança
+
+Applied Linear Statistical Models 5th pag 68,73-78
+
+Applied regression pag 58,59
+
       a)  exemplos de uso
       b) como fazer
 
@@ -309,6 +395,7 @@ Os dois metodos juntos (pah 721)
   b)exemplos
   c)como fazer
   
+
 &nbsp;
 
 ## Regressão Linear Multipla

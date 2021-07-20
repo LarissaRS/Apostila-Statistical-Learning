@@ -21,7 +21,7 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 &nbsp;
 
-Manipulações algébricas a partir das Equações Normais para encontrar os estimadores dos parâmetros de $\beta_0$ e $\beta_1$:
+Manipulações algébricas a partir das Equações Normais para encontrar os estimadores dos parâmetros de $\hat{\beta}_0$ e $\hat{\beta}_1$:
 
 * Para $\beta_0$:
 
@@ -85,6 +85,8 @@ $$\hat{\beta}_1=\frac{\sum_{i=1}^{n}(Y_i-\bar{Y})(X_i-\bar{X})}{\sum_{i=1}^{n}(X
 <div id="demo2"></div>
 # Demonstração 2
 
+Applied Linear Statistical Models 5th pag 66
+
 &nbsp;
 
 Lineariedade dos estimadores de mínimos quadrados.
@@ -128,7 +130,7 @@ $$\hat{\beta}_1 = \sum_{i=1}^{n}z_i^*Y_i$$
 
 &nbsp;
 
-Valor esperado dos parâmetros de $\beta_0$ ,$\beta_1$:
+Valor esperado dos parâmetros de $\hat{\beta}_0$, $\hat{\beta}_1$:
 
 &nbsp;
 
@@ -158,13 +160,13 @@ $$E(\hat{\beta}_1)={\beta}_1$$
 
 * Para $\hat{\beta}_0$:
 
-$\qquad\quad\qquad\qquad  E(\hat{\beta}_0)=E(\bar{Y}-\hat{\beta}_1\bar{X})$  
+$\qquad\qquad\quad\qquad\qquad  E(\hat{\beta}_0)=E(\bar{Y}-\hat{\beta}_1\bar{X})$  
 
-$\qquad\quad\qquad\quad\qquad\qquad = E\bigg(\frac{\sum_{i=1}^{n}Y_i}{n}\bigg)-\hat{\beta}_1\bar{X}\quad\qquad\quad$  
+$\qquad\qquad\quad\qquad\quad\qquad\qquad = E\bigg(\frac{\sum_{i=1}^{n}Y_i}{n}\bigg)-\hat{\beta}_1\bar{X}\quad\qquad\quad$  
 
-$\qquad\quad\qquad \qquad\qquad\quad=\frac{1}{n}E\bigg(\sum_{i=1}^{n}Y_i\bigg)-\hat{\beta}_1\bar{X}\quad$
+$\qquad\qquad\quad\qquad \qquad\qquad\quad=\frac{1}{n}E\bigg(\sum_{i=1}^{n}Y_i\bigg)-\hat{\beta}_1\bar{X}\quad$
 
-<div style="float:right;max-width:35%; max-height: 35%;" markdown="1"> ![](images/note3.jpg)
+<div style="float:right;max-width:30%; max-height: 30%;" markdown="1"> ![](images/note3.jpg)
 </div>
 
 $$\quad\quad\qquad=\frac{1}{n}E\bigg(\sum_{i=1}^{n}{\beta}_0+{\beta}_1X_i\bigg)-\hat{\beta}_1\bar{X}$$
@@ -185,7 +187,7 @@ $$E(\hat{\beta}_0)=\beta_0$$
 
 &nbsp;
 
-Variância dos parâmetros
+Variância dos parâmetros $\hat{\beta}_0$ e $\hat{\beta}_1$.
 
 &nbsp;
 
@@ -216,7 +218,7 @@ $$Var(\hat{\beta}_1)=\frac{\sigma^2}{\sum_{i=1}^{n}(X_i-\bar{X})^2}$$
 
 &nbsp;
 
-Covariância dos parâmetros
+Covariância dos parâmetros 
 
 &nbsp;
 
@@ -265,7 +267,7 @@ $$\qquad \qquad=1$$
 
 # Demonstração 7
 
-Esperança e variancia do estimador da variancia:
+Esperança e variancia do estimador $\hat{\sigma}^2$
 
 &nbsp;
 

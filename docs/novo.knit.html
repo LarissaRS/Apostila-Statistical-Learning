@@ -366,6 +366,8 @@ div.tocify {
 </div>
 <div id="regressão-linear-simples" class="section level1">
 <h1>1. Regressão Linear Simples</h1>
+<p>Applied Linear Statistical Models 5th pag 33-34</p>
+<p>Colocar figura 1.4 do Applied Linear Statistical Models 5th</p>
 <p>Nesta sessão estudaremos as técnicas de regresão aplicadas à duas variaveis que relacionam de forma linear, isto é, essa relação pode ser descrita por uma reta.</p>
 <p>Vamos dar uma olhada nos <a href="https://people.sc.fsu.edu/~jburkardt/datasets/regression/x09.txt">dados</a> idade e teor de gordura no sangue que seguem abaixo:</p>
 <pre><code>## # A tibble: 6 x 2
@@ -402,6 +404,17 @@ div.tocify {
 <li><span class="math inline">\(\varepsilon_i\)</span> são os erros de cada observação <span class="math inline">\(X_i\)</span>;</li>
 <li><span class="math inline">\(i=1,2,3...\)</span>.</li>
 </ul>
+<p>A primeira suposição a respeito deste modelo a respeito dos erros:</p>
+<ul>
+<li>O valor esperado dos erros é sempre zero: <span class="math inline">\(E[\varepsilon_i]=0 \quad\forall i\)</span>;<br />
+</li>
+<li>Sua variância é sempre constante <span class="math inline">\(Var[\varepsilon_i]=\sigma^2\quad\forall i\)</span>;<br />
+</li>
+<li>Eles não são correlacionados: <span class="math inline">\(Cov(\varepsilon_i, \varepsilon_j)=0 \quad \forall\quad i \ne j\)</span>.</li>
+</ul>
+<div style="float:center;max-width:90%; max-height: 90%;" markdown="1">
+<p><img src="images/note4.png" /></p>
+</div>
 <p>Voltando ao exemplo, na figura abaixo temos as representações dos parâmetros nas partes em destaque: <span class="math inline">\(\beta_0\)</span> como intercepto, isto é, ponto em que a reta corta o eixo <span class="math inline">\(Y\)</span>; <span class="math inline">\(\beta_1\)</span> como incremento em <span class="math inline">\(Y\)</span> para cada uma unidade de <span class="math inline">\(X\)</span>; e por fim <span class="math inline">\(\varepsilon_i\)</span> como a distância entre a reta de regressão e a observação <span class="math inline">\(X_i\)</span>.</p>
 <div style="float:center;max-width:90%; max-height: 120%;" markdown="1">
 <p><img src="images/denovo.jpeg" /></p>
@@ -409,6 +422,20 @@ div.tocify {
 <p>Deste modo, nosso modelo de regressão linear simples que descreve a relação entre idade e teor de gordura no sangue é:</p>
 <p><span class="math display">\[\hat{y}_i = 102.6 + 5.3x_i+\varepsilon_i\]</span> para <span class="math inline">\(i=1,2,...,24,25\)</span>.</p>
 <p> </p>
+</div>
+<div id="propriedades-do-modelo" class="section level1">
+<h1>1.2 Propriedades do modelo</h1>
+<p>Agora que conhecemos o modelo, vamos conferir algumas de suas propriedades. Sabemos então qe <span class="math inline">\(Y_i\)</span> são as variáveis resposta e que <span class="math inline">\(\varepsilon_i\)</span> são variáveis aleatórias correspondentes aos erros. Como o valor esperado de <span class="math inline">\(\varepsilon_i\)</span> é sempre zero, então:</p>
+<div style="float:right;max-width:50%; max-height: 70%;" markdown="1">
+<p><img src="images/note5.png" /></p>
+</div>
+<p><span class="math display">\[E[Y_i]=E[\beta_0+\beta_1X_i+\varepsilon_i]\]</span> <span class="math display">\[\qquad\quad=E[\beta_0+\beta_1X_i]+E[\varepsilon_i]\]</span> <span class="math display">\[\qquad\quad=E[\beta_0+\beta_1X_i]+0\quad\]</span> <span class="math display">\[\qquad=\beta_0+\beta_1X_i\quad\qquad\]</span>  </p>
+<p> </p>
+<p><span class="math inline">\(\qquad\qquad Var[Y_i]=Var[\beta_0+\beta_1X_i+\varepsilon_i]\)</span></p>
+<p><span class="math inline">\(\qquad\qquad\qquad\quad = Var[\varepsilon_i]\qquad\qquad\)</span></p>
+<p><span class="math inline">\(\qquad\qquad\qquad\quad = \sigma^2\qquad\qquad\)</span></p>
+<p>Além disso, como os erros <span class="math inline">\(\varepsilon_i\)</span> e <span class="math inline">\(\varepsilon_j\)</span> não correlacionados, então as respostas <span class="math inline">\(Y_i\)</span> e <span class="math inline">\(Y_j\)</span> também não serão</p>
+<p>Applied regression pag 22-24 &amp; 39</p>
 </div>
 <div id="estimação-dos-parâmetros" class="section level1">
 <h1>1.2 Estimação dos parâmetros</h1>
@@ -424,13 +451,13 @@ div.tocify {
 <p>para <span class="math inline">\(i= 1,2,3,...n.\)</span>, i.e. para n observações. Como <span class="math inline">\(\varepsilon_i = Y_i-(\beta_0+\beta_1X_i)= Y_i-\beta_0-\beta_1X_i\)</span>, então queremos encontrar um <span class="math inline">\(\beta_0\)</span> e <span class="math inline">\(\beta_1\)</span> tal que minimize <span class="math inline">\(Q\)</span>:</p>
 <p><span class="math display">\[Q=\sum_{i=1}^{n} \varepsilon_i^2=\sum_{i=1}^{n} (Y_i-\beta_0-\beta_1X_i)^2\]</span> Para encontrar essas estimativas analiticamente nos baseando no modelo de regressão simples, usaremos as duas equações que seguem abaixo,conjuntamente:</p>
 <p><span class="math display">\[\sum_{i=1}^{n}Y_i = n\beta_0-\beta_1\sum_{i=1}^{n}X_i\]</span> <span class="math display">\[\sum_{i=1}^{n}X_iY_i = \beta_0\sum_{i=1}^{n}X_i-\beta_1\sum_{i=1}^{n}X_i^2\]</span> Essa equações, também chamadas de equações normais, podem ser derivadas em relação aos parâmetros:</p>
-<span class="math display">\[\frac{\partial Q}{\partial \beta_0}=-2\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)\]</span><br />
-<span class="math display">\[\frac{\partial Q}{\partial \beta_1}=-2\sum_{i=1}^{n}X_i(Y_i-\beta_0-\beta_1X_i)\]</span><br />
-
+<p><span class="math display">\[\frac{\partial Q}{\partial \beta_0}=-2\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)\]</span><br />
+<span class="math display">\[\frac{\partial Q}{\partial \beta_1}=-2\sum_{i=1}^{n}X_i(Y_i-\beta_0-\beta_1X_i)\]</span></p>
+<p>Igualando essas derivadas à zero, encontramos os valores de <span class="math inline">\(\beta_0\)</span> e <span class="math inline">\(\beta_1\)</span> que minimizam <span class="math inline">\(Q\)</span>:</p>
+<p> </p>
 <div style="float:right;max-width:35%; max-height: 35%;" markdown="1">
 <p><img src="images/note1.jpg" /></p>
 </div>
-<p>Igualando essas derivadas à zero, encontramos os valores de <span class="math inline">\(\beta_0\)</span> e <span class="math inline">\(\beta_1\)</span> que minimizam <span class="math inline">\(Q\)</span>:</p>
 <p><span class="math display">\[-2\sum_{i=1}^{n}(Y_i-\hat{\beta}_0-\hat{\beta}_1X_i)=0\]</span> <span class="math display">\[-2\sum_{i=1}^{n}X_i(Y_i-\hat{\beta}_0-\hat{\beta}_1X_i)=0\]</span></p>
 <p>Dividindo os dois lados das equações por <span class="math inline">\(-2\)</span>: <span class="math display">\[\sum_{i=1}^{n}(Y_i-\hat{\beta}_0-\hat{\beta}_1X_i)=0\]</span> <span class="math display">\[\sum_{i=1}^{n}X_i(Y_i-\hat{\beta}_0-\hat{\beta}_1X_i)=0\]</span></p>
 <p>Expandindo as equações, conseguimos chegar nas equações normais: <span class="math display">\[\sum_{i=1}^{n}Y_i-n\hat{\beta}_0-\hat{\beta}_1\sum_{i=1}^{n}X_i=0\]</span> <span class="math display">\[\sum_{i=1}^{n}X_iY_i-\hat{\beta}_0\sum_{i=1}^{n}X_i-\hat{\beta}_1\sum_{i=1}^{n}X_i^2=0\]</span></p>
@@ -442,7 +469,7 @@ div.tocify {
 </div>
 </div>
 <p> </p>
-<p>A partir delas conseguim ao isolar os parâmetros e obter as estimações. Para mais detalhes desta etapa, clique <a href="https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_1">aqui</a></p>
+<p>A partir delas conseguim ao isolar os parâmetros e obter as estimações. Para mais detalhes desta etapa, veja a <a href="https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_1">Apêndice: Demonstração 1</a>.</p>
 <p> </p>
 <p><span class="math display">\[\hat{\beta}_0=\bar{Y}-\beta_1\bar{X}\]</span></p>
 <p><span class="math display">\[\hat{\beta}_1 = \frac{\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})}{\sum_{i=1}^{n}(X_i-\bar{X})}\]</span> Considerando: <span class="math inline">\(\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})=S_{xy}\)</span> como a soma dos produtos de X e Y; <span class="math inline">\(\sum_{i=1}^{n}(X_i-\bar{X})=S_{XX}\)</span> como a soma dos quadrados de X. Então podemos dizer que</p>
@@ -474,16 +501,13 @@ Entretanto, precisamos de certos <strong>requisitos</strong> para poder usar ele
 <p><img src="images/autocor.jpg" /></p>
 </div>
 </div>
-<div id="propriedades." class="section level1">
-<h1>1.2.1.1 Propriedades.</h1>
-<p>Os estimadores <span class="math inline">\(\hat{\beta}\)</span> obtidos pelo método de método de mínimos quadrados são funções lineares de Y (veja a demonstração matemática <a href="https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_2">aqui</a>. E segundo o Teorema de Gauss Markov, dado as condições do modelo de regressão linear, o método de mínimos quadrados:</p>
+<div id="propriedades-dos-estimadores-de-mmq" class="section level1">
+<h1>1.2.1.1 Propriedades dos estimadores de MMQ</h1>
+<p>Applied regression pag 54</p>
+<p>Os estimadores <span class="math inline">\(\hat{\beta}\)</span> obtidos pelo método de método de mínimos quadrados são funções lineares de Y (<a href="https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_2">Apêndice: Demonstação 2</a>). E segundo o Teorema de Gauss Markov, dado as condições do modelo de regressão linear, o método de mínimos quadrados:</p>
 <ul>
-<li><p>Tem estimadores <span class="math inline">\(\beta_0\)</span> e <span class="math inline">\(\beta_1\)</span> não viesados, i.e., o valor esperado do estimador é ao próprio arametro que foi estimado, por exemplo <span class="math inline">\(E(\hat{\theta})=\theta\)</span>. Isso independente da distribuição de probabilidade desses erros. Para a demonstração, veja mais <a href="https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_3">aqui</a></p></li>
+<li><p>Tem estimadores <span class="math inline">\(\beta_0\)</span> e <span class="math inline">\(\beta_1\)</span> não viesados, i.e., o valor esperado do estimador é ao próprio arametro que foi estimado, por exemplo <span class="math inline">\(E(\hat{\theta})=\theta\)</span>. Isso independente da distribuição de probabilidade desses erros (<a href="https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_3">Apêndice: Demonstação 3</a>).</p></li>
 <li><p>Tem a mínima variância entre todos os estimadores não viesados e lineares. Logo eles são os mais precisos entre esse tipo de estimador.</p></li>
-</ul>
-<p>Além disso temos que:</p>
-<ul>
-<li>$$ # 1.2.1.2 ANOVA e R²</li>
 </ul>
 </div>
 <div id="exemplo" class="section level1">
@@ -492,6 +516,8 @@ Entretanto, precisamos de certos <strong>requisitos</strong> para poder usar ele
 </div>
 <div id="método-da-máxima-verossimilhança" class="section level1">
 <h1>1.2.2 Método da Máxima Verossimilhança</h1>
+<p>Applied Linear Statistical Models 5th (pag 51 - pag 56)<br />
+Aplied regression (pag 78 - pag 80) &amp; pag 88 (capitulo2)</p>
 <p>O método de máxima verossilimilhança utiliza o produtos das densidades das distribuição de probabilidade de <span class="math inline">\(Y_i\)</span> como uma medida para a <em>consistencia</em> dos parâmetros para aquela amostra. Assim o método escolhe os valores máximos da verossimilhança estimada, tal que os valores dos paramêtros sejam mais consistentes.</p>
 <p>Partindo do fato que <span class="math inline">\(E(Y_i) = \beta_0-\beta_1X_i\)</span> e <span class="math inline">\(Var[Y_i]=\sigma^2\)</span>, então a função densidade de probabilidade de <span class="math inline">\(Y_i\)</span> será:</p>
 <p><span class="math display">\[f_i=\frac{1}{\sqrt {2\pi\sigma} }exp\bigg[-\frac{1}{2}\bigg(\frac{Y_i-\beta_0-\beta_1X_i}{\sigma}\bigg)^2 \bigg]\]</span></p>
@@ -505,28 +531,41 @@ Entretanto, precisamos de certos <strong>requisitos</strong> para poder usar ele
 <p>Mas escolhemos o logaritmo da função de máxima verossimilhança por ser mais facil de derivar. Seguem as derivadas particias dos parâmetros, já igualadas a zero:</p>
 <p> </p>
 <p><span class="math display">\[\frac{\partial L(\beta_o, \beta_1, \sigma^2)}{\partial \beta_0}\quad= -\frac{1}{\sigma^2}\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)=0\]</span></p>
-<p><span class="math display">\[\qquad\qquad\quad=\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)=0\]</span> <span class="math display">\[\sum_{i=1}^{n}y_i=n\beta_0+(\sum_{i=1}^{n}x_i)\beta_1\]</span></p>
-<p> </p>
+<p><span class="math display">\[\qquad\qquad\quad=\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)=0\]</span> <span class="math display">\[\sum_{i=1}^{n}y_i=n\beta_0+(\sum_{i=1}^{n}x_i)\beta_1\]</span> <span class="math display">\[\hat{\beta}_0=\bar{Y}-\beta_1\bar{X}\]</span></p>
 <p> </p>
 <p><span class="math display">\[\frac{\partial L(\beta_o, \beta_1, \sigma^2)}{\partial \beta_1} \quad= -\frac{1}{\sigma^2}\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)=0\]</span> <span class="math display">\[\quad\quad\quad\quad\quad\quad=\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)x_i=0\]</span> <span class="math display">\[\sum_{i=1}^{n}y_ix_i=(\sum_{i=1}^{n}x_i)\beta_0+(\sum_{i=1}^{n}x_i^2)\beta_1  \]</span></p>
+<p><span class="math display">\[\hat{\beta}_1 = \frac{\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})}{\sum_{i=1}^{n}(X_i-\bar{X})}\]</span></p>
 <p> </p>
-<p> </p>
-<p><span class="math display">\[\frac{\partial L(\beta_o, \beta_1, \sigma^2)}{\partial \sigma^2}\quad=\frac{n}{\sigma^2}-\frac{1}{\sigma^4}\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)=0\]</span></p>
-<p>Assim temos que os estimadores para os parâmetros seguem abaixo. Para mais detalhes desta etapa clique <a href="https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_1">aqui</a>.</p>
-<p><span class="math display">\[\hat{\beta}_1 = \frac{\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})}{\sum_{i=1}^{n}(X_i-\bar{X})}\]</span><br />
-<span class="math display">\[\hat{\beta}_0=\bar{Y}-\beta_1\bar{X}\]</span><br />
-<span class="math display">\[\hat{\sigma}^2=\frac{\sum_{i=1}^{n}(Y_i-Y_i)^2}{n}\]</span><br />
-Os dois metodos juntos (pah 721)</p>
+<p><span class="math display">\[\frac{\partial L(\beta_o, \beta_1, \sigma^2)}{\partial \sigma^2}=\frac{n}{\hat{\sigma}^2}-\frac{1}{\hat{\sigma}^4}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)=0\]</span></p>
+<p><span class="math display">\[\frac{n}{\hat{\sigma}^2}=\frac{1}{\hat{\sigma}^4}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)\]</span> <span class="math display">\[n=\frac{1}{\hat{\sigma}^2}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)\]</span></p>
+<p><span class="math display">\[\hat{\sigma}^2=\frac{1}{n}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)^2\]</span> Como <span class="math inline">\(\hat{Y}_i=\beta_0-\beta_1X_i\)</span>, então:</p>
+<p><span class="math display">\[\hat{\sigma}^2=\frac{\sum_{i=1}^{n}(Y_i-\hat{Y}_i)^2}{n}\]</span></p>
+</div>
+<div id="propriedades-dos-estimadores-de-mmv" class="section level1">
+<h1>1.2.2.1 Propriedades dos estimadores de MMV</h1>
+<p>Aplied regression (pag 80 - pag 82)</p>
+</div>
+<div id="os-dois-metodos-juntos-pah-721" class="section level1">
+<h1>1.2.3 Os dois metodos juntos (pah 721)</h1>
 </div>
 <div id="análise-de-resíduos-openintro" class="section level1">
 <h1>1.3 Análise de Resíduos (Openintro)</h1>
+<p>Applied Linear Statistical Models 5th pg 126 Applied regresion pag 53,54</p>
 <p>a)analise de residuos a1) pq fazer a2) como fazer</p>
 <div id="análise-de-variância" class="section level3">
 <h3>Análise de Variância</h3>
+<p>Applied regresion pag 52,65-68 Applied Linear Statistical Models 5th pag 87-97</p>
 <p>a)pq fazer b)exemplos c)como fazer</p>
 </div>
+</div>
+<div id="r²" class="section level1">
+<h1>R²</h1>
+<p>Applied Linear Statistical Models 5th pag 98</p>
+<p>Applied regresion pag 55/64-65</p>
 <div id="intervalos-de-confiança" class="section level3">
 <h3>Intervalos de confiança</h3>
+<p>Applied Linear Statistical Models 5th pag 68,73-78</p>
+<p>Applied regression pag 58,59</p>
 <pre><code>  a)  exemplos de uso
   b) como fazer</code></pre>
 </div>

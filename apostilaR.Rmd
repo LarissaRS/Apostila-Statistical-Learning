@@ -19,7 +19,7 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 &nbsp;
 
-Texto introdutorio
+Texto introdutório
 
 # Como baixar e instalar o programa R e RStudio
 
