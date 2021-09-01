@@ -355,8 +355,7 @@ div.tocify {
 <div id="introdução" class="section level1">
 <h1>Introdução</h1>
 <p>Redes sociais, compras online, câmera e microfone de smartphones e notebooks. Estes são alguns exemplos de fontes que alimentam enormes bancos de dados diariamente sem percebermos. Mas afinal, como trabalhar com esse montante de dados e extrair deles informações úteis? Com o aprendizado de máquina, um dos braços da inteligência artificial, podemos analisar esses dados de maneira automática e otimizada.<br />
-Aprendizado estatístico de máquina nada mais é que um método para analisar dados e construir modelos, tal que o computador consegue aprender sozinho a identificar padrões, fazer previsões e tomar decisões. Tudo isso utilizando apenas os dados disponibilizados a ele e seus próprios erros cometidos no processo.<br />
-Nesta apostila, você encontrará métodos de aprendizado estatístico de máquina do tipo supervisionado, isto é, técnicas onde o computador aprende sozinho uma função para modelar e entender os dados, levando em consideração as suposições e regras estatísticas.</p>
+Nesta apostila, você encontrará métodos de aprendizado estatístico de máquina do tipo supervisionado, isto é, técnicas onde o computador aprende sozinho uma função para modelar e entender os dados, levando em consideração suposições e regras estatísticas.</p>
 <p> </p>
 </div>
 <div id="um-pouco-de-história" class="section level1">
@@ -368,30 +367,93 @@ O nome “Machine Learning” foi criado por um funcionário da IBM, Arthur Lee 
 <p>começaram em 1943 com o nascimento da inteligência artificial, quando o neuro anatomista Warren McCulloch e o matemático Walter Pitts estudaram como os neurônios funcionam e criaram um modelo usando um circuito eletrônico com base neste funcionamento. Ao fim de 1970 já existiam muitas técnicas matemáticas e estatísticas para o aprendizado a partir dos dados, entretanto apenas em meados dos anos 80 foi computacionalmente possível implementar uma dessas técnicas na prática, os primeiros a realizarem essa prática Breiman, Friedman, Olshen e Stone, que conseguiram implementar os métodos de árvore de classificação, regressão, validação cruzada e seleção de modelo.<br />
 Com os recursos computacionais disponíveis hoje, a aprendizagem estatística de máquina pode ser aplicada nas mais diversas áreas e já é usada por empresas de diversos ramos como marketing, biologia, controle e automação, educação, finanças, medicina e até linguística.</p>
 <p> </p>
-<div id="o-que-temos-de-novo" class="section level2">
-<h2>O que temos de novo?</h2>
-<ul>
-<li>Aprendizado de Máquina VS Aprendizado Estatístico de Máquina</li>
-<li>Regressão VS Classificação</li>
-</ul>
+</div>
+<div id="o-que-temos-de-novo" class="section level1">
+<h1>O que temos de novo?</h1>
+<p>Com o avanço das técnicas de estatistica e da computação, hoje temos duas diferentes formas de ver a modelagem: a primeira e mais forte entre os estatísticos, tem como foco a inferência, regressão e interpretação de parâmetros, assumindo que o modelo está correto e checando as suposições necessárias; a segunda e mais presenta a àrea de aprendizagem de máquina, tem como foco o poder de predição do modelo, sendo esse modelo o mais correto ou não. Você perceberá ao longo do seu aprendizado e prática na área de estatistica e aprendizado de máquina, que muitas vezes essas visões se combinam a fim de encontrar a melhor solução para o problema em questão.</p>
 <p> </p>
 </div>
-<div id="regressão-linear" class="section level2">
-<h2>Regressão Linear</h2>
+<div id="aprendizado-supervisionado" class="section level1">
+<h1>Aprendizado Supervisionado</h1>
+Aprendizado estatístico de máquina supervisionado nada mais é que um método para analisar dados e construir modelos, tal que o computador consegue aprender sozinho a identificar padrões, relações entre as variáveis e fazer previsões. Tudo isso utilizando apenas os dados disponibilizados a ele, os quais seguem uma determinada regra ou tem um determinado “rótulo”.
+<div style="float:center;max-width: 95%; max-height: 95%;" markdown="1">
+<img src="images/ml.png" />
+</div>
+<p>Ao coletar as informações de interesse, podemos encontrar dois tipos de dado:</p>
 <ul>
-<li>Regressão Linear Simples</li>
-<li>Regressão Linear Multipla</li>
+<li><p><strong>Quantitativos:</strong> Informações que podem ser medidas por valores numéricos, sejam eles contínuos ou discretos. Como por exemplo a altura, peso, comprimento quantidade de peças etc.</p></li>
+<li><p><strong>Qualitativos:</strong> Informações que podem ser separados por categorias, sejam elas ordinais ou nominais. Por exemplo sexo, grau de instrução, níveis de concentração de um medicamento etc.</p></li>
 </ul>
+<p>Tais dados podem ser analisados por duas técnicas no ambito da aprendizagem de máquina supervisionada: a regressão, aplicada a dados quantitativos e a classificação, aplicada a dados do tipo qualitativos.</p>
+<p>Além disso algumas terminologias naturais da estatística são diferentes no mundo da aprendizagem de máquina supervisionado:</p>
+<div style="float:center;max-width: 75%; max-height: 75%;" markdown="1">
+<img src="images/notex.png" />
+</div>
+<p>Vale lembrar também as formas das notações utilizadas nesta apostila</p>
+<p>(forma vetor/singular 15/03) (explicar dados de treino e dados de teste)</p>
 <p> </p>
 </div>
-<div id="classificação" class="section level2">
-<h2>Classificação</h2>
+<div id="regressão" class="section level1">
+<h1>Regressão</h1>
+<div style="float:right;max-width: 40%; max-height: 40%;" markdown="1">
+<img src="images/note6.jpg" />
+</div>
+<p> </p>
+<p>Neste tópico, como citado acima, trabalharesmos com as variáveis do tipo quantitativas. O modelo que relaciona um vetor de inputs <span class="math inline">\(X^T=(X_1,X_2,...,X_p)\)</span> e os outputs <span class="math inline">\(\hat{Y}\)</span> é:</p>
+<p><span class="math display">\[\hat{Y} =\hat\beta_0+\sum_{j=1}^{p}X_j\hat\beta_j\]</span></p>
+<p>onde <span class="math inline">\(\beta_0\)</span> é chamado de tendência. Deste modo temos uma função linear p-dimensional, de espaço de entrada <span class="math inline">\(f(X)=X^T\beta\)</span>, com coeficiente angular <span class="math inline">\(f^{&#39;}(X)=\beta\)</span>.</p>
+<p> </p>
+<p>Na forma matricial temos que o mesmo modelo pode ser escrito como</p>
+<p><span class="math inline">\(\qquad\qquad\qquad\qquad\qquad\qquad\hat{Y}=X^T\beta\)</span></p>
+<p><span class="math inline">\(\hat{Y}=\begin{bmatrix} \hat{y}_{11} \\ \hat{y}_{21} \\ \vdots \\ \hat{y}_{n1} \\ \end{bmatrix}\)</span> <span class="math inline">\(X=\begin{bmatrix} 1 &amp; x_{11} &amp; x_{12} &amp; x_{13} &amp; \dots &amp; x_{1p} \\  1 &amp;x_{21} &amp; x_{22} &amp; x_{23} &amp; \dots &amp; x_{2p} \\ \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 1 &amp; x_{n1} &amp; x_{n2} &amp; x_{n3} &amp; \dots &amp; x_{np} \end{bmatrix}\)</span> <span class="math inline">\(\beta=\begin{bmatrix} \beta_1 \\ \beta_2 \\ \vdots \\ \beta_n \\ \end{bmatrix}\)</span></p>
+<p>(adicionar explicação geometrica com desenhos)</p>
+<p> </p>
+</div>
+<div id="método-de-mínimos-quadrados-msq" class="section level1">
+<h1>Método de Mínimos Quadrados (MSQ)</h1>
+<p>Considerando as formas matriciais, formalmente temos que o método dos mínimos quadrados, o qual utiliza os coeficietes <span class="math inline">\(\beta\)</span> para minimizar a soma dos quadrados dos erros:</p>
+<div style="float:right;max-width: 30%; max-height: 30%;" markdown="1">
+<img src="images/note8.JPG" />
+</div>
+<p><span class="math display">\[RSS(\beta) = \sum_{i=1}^{N}(y_i - x_i^T \beta)^2\]</span> <span class="math display">\[RSS(\beta) = (y-X\beta)^T(y-X\beta)\]</span></p>
+<p>onde:</p>
+<ul>
+<li><span class="math inline">\(X = X_{(N_xp)}\)</span> é uma matriz com vetores de input.</li>
+<li><span class="math inline">\(y = y_{(N_x1)}\)</span> é um vetor de saída dos dados de treino</li>
+</ul>
+<p> </p>
+<p>Devirando o RSS (no formato acima) em relação à <span class="math inline">\(\beta\)</span> teremos</p>
+<p><span class="math display">\[X^T(y-X\beta)=0\]</span> Se <span class="math inline">\(X^TX\)</span> é não singular, então há solução única, a qual é: <span class="math inline">\(\hat{\beta}=(X^TX)^{-1}X^Ty\)</span></p>
+<p> </p>
+<p>Portando o valor ajustado <span class="math inline">\(\hat{y_i}\)</span> correspondente à entrada <span class="math inline">\(x_i\)</span> será</p>
+<p><span class="math display">\[\hat{y_i}(x_i)=x_i^T\hat{\beta}\]</span></p>
+</div>
+<div id="classificação" class="section level1">
+<h1>Classificação</h1>
 <ul>
 <li>Regressão Logistica</li>
 <li>Discriminantes Lineares (LDA)</li>
 </ul>
-<p> </p>
+<div id="método-dos-vizinhos-mais-próximos-knn" class="section level2">
+<h2>Método dos vizinhos mais próximos (KNN)</h2>
+<p>Este método consiste em utilizar as <span class="math inline">\(K\)</span> observações dos dados de treino mais próximas de <span class="math inline">\(x\)</span>, para estimar o valor de <span class="math inline">\(y\)</span>.</p>
+<p><span class="math display">\[\hat{Y}(x) = \frac{1}{K}\sum_{x_i\in N_k(x)}y_i\]</span> onde:</p>
+<ul>
+<li><span class="math inline">\(N_{k(x)}\)</span> são os pontos mais próximos do ponto <span class="math inline">\(x_i\)</span> a amostra de treino;</li>
+<li>A proximidade destes pontos é baseada na distância euclidiana.</li>
+</ul>
+<p>Ou seja, encontramos os K pontos espaço de entrada <span class="math inline">\(x_i\)</span> mais próximos de <span class="math inline">\(x\)</span> e fazemos as médias dessas respostas.</p>
 </div>
+</div>
+<div id="função-de-perda" class="section level1">
+<h1>Função de perda</h1>
+<p>Ao realizar uma predição, teremos os erros incluidos nela e é do nosso interesse penalizar estes erros para conseguirmos quantificar o “custo” destes erros. A função de perna mais comum e conveniente é a <em>Perda de erro quadrático</em>:</p>
+<p><span class="math display">\[L(Y,f(X))=(Y-f(X))^2\]</span> E para utilizar esta função, precisaremos de um critério para a escolha da função interna <span class="math inline">\(F(X)\)</span>. Para conseguir chegar a essa escolha, usaremos a esperança do erro de predição (expected prediction error):</p>
+<p><span class="math display">\[ EPE(f(x)) = E(Y-f(X))^2\]</span> <span class="math display">\[\qquad\quad = \int [y-f(x)]^2 P_r(d_x,d_y)\]</span> <span class="math display">\[\qquad\quad = E_x E_{y|x}([Y-f(x)]^2|X)\]</span> Deste modo, para encontrar <span class="math inline">\(f(x)\)</span> é suficiente minimizar a função <span class="math inline">\(EPE(f(x))\)</span> em um ponto:</p>
+<p><span class="math display">\[f(x)=argmin_c E_{Y|X}((Y-c)^2|X=x)\]</span> <span class="math display">\[f(x)= E(Y|X=x)\]</span></p>
+<p>A função <span class="math inline">\(f(x)\)</span> acima, é chamda também de <em>função de regressão</em>, já que a melhor predição para Y é a média condicional dada pelo erro quadrático médio (isso para qualquer ponto de X=x). Já o <em>método KNN</em> calcula <span class="math inline">\(f(x)\)</span> fazendo a média de todos os <span class="math inline">\(y_i\)</span> com entrada <span class="math inline">\(x_i=x\)</span>:</p>
+<p><span class="math display">\[\hat{f}(x) = Média (y_i|x_i \in N_k(x))\]</span></p>
+<p> </p>
 <div id="métodos-de-reamostragem" class="section level2">
 <h2>Métodos de reamostragem</h2>
 <ul>

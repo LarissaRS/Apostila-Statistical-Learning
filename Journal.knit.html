@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Aprendizagem Estatística de Máquina Supervisionada</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Sobre</a>
+</li>
+<li>
+  <a href="apostilaR.html">R</a>
+</li>
+<li>
+  <a href="novo.html">Estatistica Básica</a>
+</li>
+<li>
+  <a href="Journal.html">Statistical Learning</a>
+</li>
+<li>
+  <a href="apendice.html">Apêndice Geral</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Aprendizagem Estatística de Máquina Supervisionada</h1>
+
+</div>
+
+
+<p>[EM CONSTRUÇÃO]</p>
+<p> </p>
+<p> </p>
+<div id="introdução" class="section level1">
+<h1>Introdução</h1>
+<p>Redes sociais, compras online, câmera e microfone de smartphones e notebooks. Estes são alguns exemplos de fontes que alimentam enormes bancos de dados diariamente sem percebermos. Mas afinal, como trabalhar com esse montante de dados e extrair deles informações úteis? Com o aprendizado de máquina, um dos braços da inteligência artificial, podemos analisar esses dados de maneira automática e otimizada.<br />
+Nesta apostila, você encontrará métodos de aprendizado estatístico de máquina do tipo supervisionado, isto é, técnicas onde o computador aprende sozinho uma função para modelar e entender os dados, levando em consideração suposições e regras estatísticas.</p>
+<p> </p>
+</div>
+<div id="um-pouco-de-história" class="section level1">
+<h1>Um pouco de história</h1>
+O nome “Machine Learning” foi criado por um funcionário da IBM, Arthur Lee Samuelem 1959. Mas os primórdios desse ramo,
+<div style="float:right;max-width: 30%; max-height: 30%;" markdown="1">
+<img src="images/ArthurSamuel.jpg" />
+</div>
+<p>começaram em 1943 com o nascimento da inteligência artificial, quando o neuro anatomista Warren McCulloch e o matemático Walter Pitts estudaram como os neurônios funcionam e criaram um modelo usando um circuito eletrônico com base neste funcionamento. Ao fim de 1970 já existiam muitas técnicas matemáticas e estatísticas para o aprendizado a partir dos dados, entretanto apenas em meados dos anos 80 foi computacionalmente possível implementar uma dessas técnicas na prática, os primeiros a realizarem essa prática Breiman, Friedman, Olshen e Stone, que conseguiram implementar os métodos de árvore de classificação, regressão, validação cruzada e seleção de modelo.<br />
+Com os recursos computacionais disponíveis hoje, a aprendizagem estatística de máquina pode ser aplicada nas mais diversas áreas e já é usada por empresas de diversos ramos como marketing, biologia, controle e automação, educação, finanças, medicina e até linguística.</p>
+<p> </p>
+<div id="o-que-temos-de-novo" class="section level2">
+<h2>O que temos de novo?</h2>
+<p>Com o avanço das técnicas de estatistica e da computação, hoje temos duas diferentes formas de ver a modelagem: a primeira e mais forte entre os estatísticos, tem como foco a inferência, regressão e interpretação de parâmetros, assumindo que o modelo está correto e checando as suposições necessárias; a segunda e mais presenta a àrea de aprendizagem de máquina, tem como foco o poder de predição do modelo, sendo esse modelo o mais correto ou não. Você perceberá ao longo do seu aprendizado e prática na área de estatistica e aprendizado de máquina, que muitas vezes essas visões se combinam a fim de encontrar a melhor solução para o problema em questão.</p>
+<p> </p>
+</div>
+<div id="aprendizado-supervisionado" class="section level2">
+<h2>Aprendizado Supervisionado</h2>
+Aprendizado estatístico de máquina supervisionado nada mais é que um método para analisar dados e construir modelos, tal que o computador consegue aprender sozinho a identificar padrões, relações entre as variáveis e fazer previsões. Tudo isso utilizando apenas os dados disponibilizados a ele, os quais seguem uma determinada regra ou tem um determinado “rótulo”.
+<div style="float:center;max-width: 80%; max-height: 80%;" markdown="1">
+<img src="images/ml.png" />
+</div>
+<p>Ao coletar as informações de interesse, podemos encontrar dois tipos de dado:</p>
+<ul>
+<li><p><strong>Quantitativos:</strong> Informações que podem ser medidas por valores numéricos, sejam eles contínuos ou discretos. Como por exemplo a altura, peso, comprimento quantidade de peças etc.</p></li>
+<li><p><strong>Qualitativos:</strong> Informações que podem ser separados por categorias, sejam elas ordinais ou nominais. Por exemplo sexo, grau de instrução, níveis de concentração de um medicamento etc.</p></li>
+</ul>
+<p>Tais dados podem ser analisados por duas técnicas no ambito da aprendizagem de máquina supervisionada: a regressão, aplicada a dados quantitativos e a classificação, aplicada a dados do tipo qualitativos.</p>
+<p>Algumas terminologias naturais da estatística são diferentes no mundo da aprendizagem de máquina supervisionado:</p>
+<div style="float:center;max-width: 70%; max-height: 70%;" markdown="1">
+<img src="images/notex.png" />
+</div>
+</div>
+<div id="regressão-linear" class="section level2">
+<h2>Regressão Linear</h2>
+<ul>
+<li><p>Regressão Linear Simples</p></li>
+<li><p>Regressão Linear Multipla</p></li>
+</ul>
+<p> </p>
+</div>
+<div id="classificação" class="section level2">
+<h2>Classificação</h2>
+<ul>
+<li>Regressão Logistica</li>
+<li>Discriminantes Lineares (LDA)</li>
+</ul>
+<p> </p>
+</div>
+<div id="métodos-de-reamostragem" class="section level2">
+<h2>Métodos de reamostragem</h2>
+<ul>
+<li>Validação Cruzada</li>
+<li>Boostrap</li>
+</ul>
+<p> </p>
+</div>
+</div>
+<div id="referência" class="section level1">
+<h1>Referência</h1>
+<ul>
+<li>Introdução &amp; Um pouco de História</li>
+</ul>
+<p>Disponível em: <a href="https://www.doc.ic.ac.uk/~jce317/history-machine-learning.html">https://www.doc.ic.ac.uk/~jce317/history-machine-learning.html</a></p>
+<p>Disponível em: <a href="https://sitn.hms.harvard.edu/flash/2017/history-artificial-intelligence/">https://sitn.hms.harvard.edu/flash/2017/history-artificial-intelligence/</a></p>
+<p>Disponível em: <a href="http://infolab.stanford.edu/pub/voy/museum/samuel.html">http://infolab.stanford.edu/pub/voy/museum/samuel.html</a></p>
+<p>Disponível em: <a href="https://artsandculture.google.com/asset/arthur-samuel-demonstrates-how-machine-learning-can-be-used-to-play-checkers-in-1962-ibm-watson-media/vgH46mpas8dL4g">https://artsandculture.google.com/asset/arthur-samuel-demonstrates-how-machine-learning-can-be-used-to-play-checkers-in-1962-ibm-watson-media/vgH46mpas8dL4g</a></p>
+<p> </p>
+<ul>
+<li>O que temos de novo?</li>
+</ul>
+<p>Hastie, Tibshirani, and Friedman. The Elements of Statistical Learning: Data Mining, Inference, and Prediction. Springer, 2009 2nd edition. Disponível em:<a href="https://web.stanford.edu/~hastie/ElemStatLearn/" class="uri">https://web.stanford.edu/~hastie/ElemStatLearn/</a>.</p>
+<p>James, Witten, Hastie, and Tibshirani. An Introduction to Statistical Learning, with applications in R. Springer, 2013. Disponível em: <a href="http://www-bcf.usc.edu/~gareth/ISL/" class="uri">http://www-bcf.usc.edu/~gareth/ISL/</a>.</p>
+<p> </p>
+<ul>
+<li>Aprendizado de Máquina VS Aprendizado Estatístico de Máquina</li>
+</ul>
+<p> </p>
+<ul>
+<li>Regressão</li>
+</ul>
+<p> </p>
+<ul>
+<li>Classificação</li>
+</ul>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

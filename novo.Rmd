@@ -1,13 +1,15 @@
 ---
 title: "Estatística básica"
 output:
+  pdf_document:
+    toc: yes
+    toc_depth: '1'
   html_document:
-    toc: true
-    toc_float: true
-    collapsed: false
-    number_sections: false
+    toc: yes
+    toc_float: yes
+    collapsed: no
+    number_sections: no
     toc_depth: 1
-    #code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
@@ -35,23 +37,23 @@ O termo regressão foi criado por Francis Galton no século 19 durante seu estud
 
 # 1. Regressão Linear Simples  
 
-Applied Linear Statistical Models 5th pag 33-34
-
-Colocar figura 1.4 do Applied Linear Statistical Models 5th
-
 Nesta sessão estudaremos as técnicas de regresão aplicadas à duas variaveis que relacionam de forma linear, isto é, essa relação pode ser descrita por uma reta.
 
 Vamos dar uma olhada nos [dados](https://people.sc.fsu.edu/~jburkardt/datasets/regression/x09.txt) idade e teor de gordura no sangue que seguem abaixo:
 
 ```{r, echo=FALSE}
-library("readxl")
+library("readr")
 library("ggplot2")
-dados = read_xlsx("C:\\Users\\Larissa Ribeiro\\Documents\\GitHub\\TesteWebsite\\sangue.xlsx")
-dados  = dados[order(dados$Idade),c(3,4)]
 ```
 
 ```{r, echo=FALSE}
-head(dados)
+dados = read_table2("https://people.sc.fsu.edu/~jburkardt/datasets/regression/x09.txt", col_names = FALSE ,skip = 36) #lendo apenas a tabela de dados 
+
+dados = dados[,c(4,5)]#seleciona as duas ultimas colunas
+
+colnames(dados) = c("Idade", "Gordura") #renomendo as colunas
+
+head(dados) #leitura das seis primeiras linhas da tabela "dados"
 ```
 
 Como pode-se notar no gráfico, a relação entre idade e teor de gordura no sangue aparentemente linear.
@@ -63,7 +65,6 @@ predicted <- data.frame(pred = predict(fit, dados), Idade = dados$Idade)
 
 
 ```{r, echo=FALSE}
-# this is the predicted line of multiple linear regression
 ggplot(data = dados, aes(x = Idade, y = Gordura)) + 
   geom_point(color='cornflowerblue') +
   geom_line(color='cornflowerblue',data = predicted, aes(x=Idade, y=pred))+
@@ -87,11 +88,7 @@ $$\hat{y}_i = 102.6 + 5.3x_i$$
 
 # 1.1 Modelo
  
-Em regressão linear, a estrutura é quase a mesma. Mudamos o nome dos parâmetros $a$ e $b$ para as letras gregas $\beta_0$ e $\beta_1$ respectivamente e adicionamos o termo $\varepsilon_i$, que vai representar o erro (também chamado de ruído) de cada observação (já que, quando coletamos determinado medida em um experimento, essa medição é passivel de pequenos erros a cada coleta). Então, o **modelo de regressão linear simples** é:
-
-
-$$Y_i =\beta_0+\beta_1X_i + \varepsilon_i$$
-onde:  
+Em regressão linear, a estrutura é quase a mesma. Mudamos o nome dos parâmetros $a$ e $b$ para as letras gregas $\beta_0$ e $\beta_1$ respectivamente e adicionamos o termo $\varepsilon_i$, que vai representar o erro (também chamado de ruído) de cada observação (já que, quando coletamos determinado medida em um experimento, essa medição é passivel de pequenos erros a cada coleta). Então, o **modelo de regressão linear simples** é:onde:  
  
  - $Y$ são as $i$ variáveis independentes (ou resposta para a i-ésima obervação);  
  - $\beta_0$ é o intercepto;  
@@ -99,6 +96,10 @@ onde:
  - $X$ são as $i$ variáveis independetes (ou conhecidas); 
  - $\varepsilon_i$ são os erros aleatórios associados a cada observação $X_i$;
  - $i=1,2,3...$.
+
+
+$$Y_i =\beta_0+\beta_1X_i + \varepsilon_i$$
+
  
 Quando aplicamos este modelo aos nosso dados, teremos os **valores ajustados** ou **estimados**, i.e.:
 
@@ -229,9 +230,6 @@ A partir delas conseguim ao isolar os parâmetros e obter as estimações. Para 
 $$\hat{\beta}_0=\bar{Y}-\beta_1\bar{X}$$
 
 $$\hat{\beta}_1 = \frac{\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})}{\sum_{i=1}^{n}(X_i-\bar{X})}$$
-Considerando: $\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})=S_{xy}$ como a soma dos produtos de X e Y; $\sum_{i=1}^{n}(X_i-\bar{X})=S_{XX}$ como a soma dos quadrados de X. Então podemos dizer que
-
-$$\hat{\beta}_1 = \frac{\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})}{\sum_{i=1}^{n}(X_i-\bar{X})}=\frac{S_{xy}}{S_{xx}}$$
 
 As **vantagens** do método dos mínimos quadrados é que, além de ser comumente usado, ele é comportado pelos programas de estatística de modo geral.    
 Entretanto, precisamos de certos **requisitos** para poder usar ele:
@@ -257,42 +255,94 @@ Entretanto, precisamos de certos **requisitos** para poder usar ele:
 <div style="float:center;max-width:50%; max-height: 50%;" markdown="1"> ![](images/autocor.jpg)
 </div>
 
-# 1.2.1.1 Propriedades dos estimadores de MMQ
-
-Applied regression: pag 54
+# 1.2.1.1 Propriedades dos estimadores de MMQ   
 
 Os estimadores $\hat{\beta}$ obtidos pelo método de método de mínimos quadrados são funções lineares de Y ([Apêndice: Demonstação 2](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_2)). E segundo o Teorema de Gauss Markov, dado as condições do modelo de regressão linear, o método de mínimos quadrados:
 
-* Tem estimadores $\beta_0$ e $\beta_1$ não viesados, i.e., o valor esperado do estimador é ao próprio arametro que foi estimado, por exemplo $E(\hat{\theta})=\theta$. Isso independente da distribuição de probabilidade desses erros ([Apêndice: Demonstação 3](https://larissars.github.io/Apostilas-estatistica/apendice.html##Demonstração_3)).
+* Tem estimadores $\beta_0$ e $\beta_1$ não viesados, i.e., o valor esperado do estimador é ao próprio arametro que foi estimado: $E[\hat{\beta_0}]= \beta_0$ e $E[\hat{\beta_1}]= \beta_1$. Isso acontece independente da distribuição de probabilidade desses erros ([Apêndice: Demonstação 3](https://larissars.github.io/Apostilas-estatistica/apendice.html#Demonstração_3)).
 
-* Tem a mínima variância entre todos os estimadores não viesados e lineares. Logo eles são os mais precisos entre esse tipo de estimador.
+* Tem variância mínima entre todos os estimadores não viesados e lineares.  
 
-Além das informações assumidas, os estimadores de mínimos quadrados tem distribuição de probabilidade Normal. Segue abaixo o valor esperado e a variância de $\hat{\beta_0}$ e $\hat{\beta_1}$ respectivamente:  
+$$Var[\hat{\beta_0}]=\sigma^2\Bigg[\frac{1}{n}+\frac{\bar{X}^2}{\sum_{i=0}^{n}(X_i-\bar{X}^2)}\Bigg]$$  
 
-* $E[\hat{\beta_0}]= \beta_0$  
-* $Var[\hat{\beta_0}]=\sigma^2\Bigg[\frac{1}{n}+\frac{\bar{X}^2}{\sum_{i=0}^{n}(X_i-\bar{X}^2)}\Bigg]$  
-* $\hat{\beta_0} \sim N\Bigg(\beta_0, \sigma^2\Bigg[\frac{1}{n}+\frac{\bar{X}^2}{\sum_{i=0}^{n}(X_i-\bar{X}^2)}\Bigg]\Bigg)$  
+$$Var[\hat{\beta_1}]=\frac{\sigma^2}{\sum_{i=0}^{n}(X_i-\bar{X})^2}$$
+
+Logo eles são os mais precisos entre esse tipo de estimador.  
+
+* Os estimadores de mínimos quadrados tem distribuição de probabilidade Normal. 
+  
+$$\hat{\beta_0} \sim N\Bigg(\beta_0, \sigma^2\Bigg[\frac{1}{n}+\frac{\bar{X}^2}{\sum_{i=0}^{n}(X_i-\bar{X}^2)}\Bigg]\Bigg)$$  
  
-&nbsp;
+$$\hat{\beta_0} \sim N\Bigg(\beta_1,\frac{\sigma^2}{\sum_{i=0}^{n}(X_i-\bar{X}^2)} \Bigg)$$  
 
-* $E[\hat{\beta_1}]=\beta_1$  
-* $Var[\hat{\beta_1}]=\frac{\sigma^2}{\sum_{i=0}^{n}(X_i-\bar{X})^2}$  
-* $\hat{\beta_0} \sim N\Bigg(\beta_1,\Bigg)$  
+
+Além disso, temos que:
+
+* Considerando $\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})=S_{xy}$ como a soma dos produtos de X e Y, $\sum_{i=1}^{n}(X_i-\bar{X})=S_{XX}$ como a soma dos quadrados de X, podemos afirmar que:
+
+$$\hat{\beta}_1 = \frac{\sum_{i=1}^{n}(X_i-\bar{X})(Y_i-\bar{Y})}{\sum_{i=1}^{n}(X_i-\bar{X})}=\frac{S_{xy}}{S_{xx}}$$  
+
+* Esses estimadores são funções lineares das observações das variáveis resposta $y_i$.
+
+* Suas variâncias são proporcionais as variâncias dos erros
+
+* São estimadores correlacionados
+
 
 Veja mais detalhes sobre os resultados acima em [Demonstração X]().  
 
-# 1.2.1.3 Exemplo
+# 1.2.1.3 Exemplo no R
+
+Para reproduzir o exemplo exibido no inicio do capítulo, precisaremos carregar os pacotes *readr* e *ggplot2*.
+
+```{r}
+#carregando os pacotes necessários
+library("readr")
+library("ggplot2")
+```
+
+Em seguidas vamos ler os dados obtidos na [página](https://people.sc.fsu.edu/~jburkardt/datasets/regression/x09.txt).
+
+```{r, message=FALSE, warning=FALSE}
+
+dados = read_table2("https://people.sc.fsu.edu/~jburkardt/datasets/regression/x09.txt", col_names = FALSE ,skip = 36) #lendo apenas a tabela de dados 
+
+dados = dados[,c(4,5)]#seleciona as duas ultimas colunas
+
+colnames(dados) = c("Idade", "Gordura") #renomendo as colunas
+
+head(dados) #Mostra as 6 primeiras linhas da tabela
+```
+
+Com os dados já separados, ajustaremos um modelo de regressão linear simples.
+
+```{r, message=FALSE, warning=FALSE}
+ajuste <- lm(Gordura ~ Idade, dados) #ajuste do modelo
+summary(ajuste) #exibe os resultados detalhados do ajuste
+```
+Dado dos coeficientes do ajuste, ambos significativos, temos o modelo
+
+$$\hat{y}_i = 102.6 + 5.3x_i$$
+
+E partir dele, podemos fazer o gráfico da reta dos valores preditos sobre os valores observados.
+
+```{r, echo=FALSE}
+predicted <- data.frame(pred = predict(fit, dados), Idade = dados$Idade) #Calculo dos falores preditos pelo modelo
+
+ggplot(data = dados, aes(x = Idade, y = Gordura)) + 
+  geom_point(color='cornflowerblue') +
+  geom_line(color='cornflowerblue',data = predicted, aes(x=Idade, y=pred))+
+  theme_bw()  #gráfico dos valores preditos sobre os valores observados
+```
 
 &nbsp;
 
 # 1.2.2 Método da Máxima Verossimilhança (MMV)
 
-Applied Linear Statistical Models 5th (pag 51 - pag 56)  
-Aplied regression (pag 78 - pag 80) & pag 88 (capitulo2)
+<div style="float:right;max-width:50%; max-height: 50%;" markdown="1"> ![](images/note7.png)</div>
+ O método de máxima verossilimilhança utiliza o produtos das densidades das distribuição de probabilidade de $Y_i$ como uma medida para a consistência dos parâmetros para aquela amostra. Assim o método escolhe os valores máximos da verossimilhança estimada, tal que os valores dos paramêtros sejam mais consistentes. 
  
- O método de máxima verossilimilhança utiliza o produtos das densidades das distribuição de probabilidade de $Y_i$ como uma medida para a *consistencia* dos parâmetros para aquela amostra. Assim o método escolhe os valores máximos da verossimilhança estimada, tal que os valores dos paramêtros sejam mais consistentes. 
- 
- Partindo do fato que $E(Y_i) = \beta_0-\beta_1X_i$ e $Var[Y_i]=\sigma^2$, então a função densidade de probabilidade de $Y_i$ será:
+ Aqui, por ser mais simples, usaremos a log-verossimilhança negartiva. Partindo do fato que $E(Y_i) = \beta_0-\beta_1X_i$ e $Var[Y_i]=\sigma^2$, então a função densidade de probabilidade de $Y_i$ será:
  
 $$f_i=\frac{1}{\sqrt {2\pi\sigma} }exp\bigg[-\frac{1}{2}\bigg(\frac{Y_i-\beta_0-\beta_1X_i}{\sigma}\bigg)^2 \bigg]$$
   
@@ -301,13 +351,12 @@ Fazendo o produtório das n densidades, correspondentes a cada uma das n observa
 $$\mathcal{L}(\beta_o, \beta_1, \sigma^2)=	\prod_{i=1}^{n} \frac{1}{(2\pi\sigma^2)^{1/2}}exp\bigg[-\frac{1}{2\sigma^2}(Y_i-\beta_0-\beta_1X_i)^2 \bigg]$$
 Simplificando a equação temos:
 $$\mathcal{L}(\beta_o, \beta_1, \sigma^2)=\frac{1}{(2\pi\sigma^2)^{n/2}}exp\bigg[ -\frac{1}{2\sigma^2}\sum_{i=1}^{n}(Y_i-\beta_0-\beta_1X_i)^2\bigg]$$
- 
-Para encontrar as estimativas dos parâmetros precisaremos fazer as derivadas parciais de $L(\beta_o, \beta_1, \sigma^2)$ em relação a cada parâmetro. Como $L(\beta_o, \beta_1, \sigma^2)$ e $ln(L(\beta_o, \beta_1, \sigma^2))$ são equações que maximizam a verossimilhança, podemos trabalhar com ambos. Note que usaremos a seguinte notação:
-
-$$L(\beta_o, \beta_1, \sigma^2) = -\frac{n}{2} ln( 2\pi) -\frac{n}{2} ln(\sigma^2)-\frac{1}{2\sigma^2}\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)^2$$  
-
 <div style="float:right;max-width:35%; max-height: 35%;" markdown="1"> ![](images/note2.jpg)
 </div>
+
+Para encontrar as estimativas dos parâmetros precisaremos fazer as derivadas parciais de $L(\beta_o, \beta_1, \sigma^2)$ em relação a cada parâmetro. Como $L(\beta_o, \beta_1, \sigma^2)$ e $ln(\mathcal{L}(\beta_o, \beta_1, \sigma^2))$ são equações que maximizam a verossimilhança, podemos trabalhar com ambos. Note que usaremos a seguinte notação:
+
+$$L(\beta_o, \beta_1, \sigma^2) = -\frac{n}{2} ln( 2\pi) -\frac{n}{2} ln(\sigma^2)-\frac{1}{2\sigma^2}\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)^2$$  
 
 Mas escolhemos o logaritmo da função de máxima verossimilhança por ser mais facil de derivar. Seguem as derivadas particias dos parâmetros, já igualadas a zero:
 
@@ -315,7 +364,7 @@ Mas escolhemos o logaritmo da função de máxima verossimilhança por ser mais 
 
 $$\frac{\partial L(\beta_o, \beta_1, \sigma^2)}{\partial \beta_0}\quad= -\frac{1}{\sigma^2}\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)=0$$
 
-$$\qquad\qquad\quad=\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)=0$$
+$$\quad\quad=\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)=0$$
 $$\sum_{i=1}^{n}y_i=n\beta_0+(\sum_{i=1}^{n}x_i)\beta_1$$
 $$\hat{\beta}_0=\bar{Y}-\beta_1\bar{X}$$  
 
@@ -339,23 +388,81 @@ Como $\hat{Y}_i=\beta_0-\beta_1X_i$, então:
 
 $$\hat{\sigma}^2=\frac{\sum_{i=1}^{n}(Y_i-\hat{Y}_i)^2}{n}$$
 
-# 1.2.2.1 Propriedades dos estimadores de MMV
+# 1.2.2.1 Propriedades dos estimadores de (MMV)
 
-Aplied regression (pag 80 - pag 82)
+Esse estimador é do tipo um estimador viesado para p parâmetro da variância $E[\hat{\sigma^2}]=\frac{n-1}{n}\sigma^2$. Mas medida que n cresce, $\hat{\sigma^2}$ tende a ser não viesado:
 
+$$lim_{n \to \infty }E[\hat{\sigma^2}]=lim_{n \to \infty} \frac{n-1}{n}\sigma^2=\sigma^2$$
 
-# 1.2.3 Os dois metodos juntos (pah 721)
-      
-# 1.3 Análise de Resíduos (Openintro)
+Contudo ele é muito confiavel devido algumas propriedades:
 
-Applied Linear Statistical Models 5th pg 126
-Applied regresion pag 53,54
+* Consistência;
+* Eficiência Assintótica;
+* Normalidade Assimptótica;
+* Invariância.
 
-  a)analise de residuos
-      a1) pq fazer
-      a2) como fazer
+# 1.3 Análise de Resíduos
 
-### Análise de Variância
+Como já citado anteriormente, os resíduos são a diferença entre o valor verdadeiro da variável resposta e o valor estimado pelo modelo, respectivamente:
+
+$$\epsilon_i=Y_i-\hat{Y_i}$$
+Eles são usados para avaliar o quão bom é o ajuste do modelo, já que, toda variabilidade não explicada pelo modelo, vai para os resíduos. Para isso vamos verificar seis caracteristicas:
+
+ * Se a regressão ajustada é uma função linear;
+ * Se os erros tem variância constante;
+ * Se os erros são independentes;
+ * Se os erros tem distribuição normal;
+ * Se o modelo não se ajusta para alguns outliers;
+ * Se uma ou mais variaveis preditoras podem ser retiradas do modelo.
+ 
+Um dos gráficos mais usados para avaliar se a função é linear e foi bem ajustada é o gráfico de pontos dos resíduos pelos valores ajustados:
+
+<div style="float:center;max-width:90%; max-height: 90%;" markdown="1"> ![](images/residuos1.png)
+</div> 
+
+Em um ajuste satisfatório teremos pontos aleatórios em torno da reta horizontal (que marca o resíduo igual a zero) e que variam de forma constante, como na figura (a). Quando isso não acontece (como nas demais imagens), temos resíduos viesados, os quais podem nos dar pistas sobre o comportamento não captado pelo modelo ajustado. Por exemplo, na figura (b) temos uma comportamento claramento quadrático e na figura (c) uma tendência linear positiva, essas caracteristicas não devem aparecer nos resíduos e sim no modelo ajustado. Se você se deparar com essa situação, refaça seu modelo.
+
+<div style="float:center;max-width:100%; max-height: 100%;" markdown="1"> ![](images/residuos2.png)
+</div> 
+
+Além disso é importante lembrar que, quando o valor de um i-ésimo resíduo $\epsilon_i$ for:
+
+ * Positivo, significa que o modelo subestimou a observação
+ 
+$$\epsilon_i>0 \quad \to \quad Y_i-\hat{Y_i}>0 \quad \to \quad Y_i>\hat{Y_i}$$  
+
+ * Negativo, significa que o modelo superestimou a observação
+ 
+$$\epsilon_i<0 \quad \to \quad Y_i-\hat{Y_i}<0 \quad \to \quad Y_i<\hat{Y_i}$$
+Outro gráfico importante é o dos resíduos absolutos (ou residuos ao quadrado) versus a variável X (preditora) ou os valores ajustados de Y (i.e. $\hat Y$). Este gráfico é util para checarmos a variância dos resíduos é ou não constante, bem como a presença de outliers.
+
+<div style="float:center;max-width:90%; max-height: 90%;" markdown="1"> ![](images/residuos4.JPG)
+</div> 
+
+Já a independência dos erros pode ser avaliada pelo simples gráfico de pontos dos resíduos em relação a variável preditora ou em relação ao tempo, pois com eles conseguimos ver se há a relação de um i-ésimo resíduo com os demais próximos a ele.
+
+<div style="float:center;max-width:90%; max-height: 90%;" markdown="1"> ![](images/residuos5.JPG)
+</div>
+
+Por fim e não menos importante, devemos checar a normalidade dos resíduos. Isso pode ser feito por diversos gráficos: gráfico da distribuição (Box plot, histograma, gráfico de pontos ou gráfico de ramos e folhas); gráfico de comparação de frequências; gráfico de normalidade dos resíduos (o mais usado).
+
+# 1.3.1 Correlação
+
+As relações entre as variáveis ajustadas no modelo podem ser fortes ou fracas e avaliar essa força é muito importante para a avaliação do modelo. Uma forma de quantificar essa força é pelo **correlação**, denotada pela letra R. Suponha que temos um conjunto de dados $(x_1,y_1),(x_2,y_2),...,(x_n,y_n)$, sua correlação é dada por:
+
+$$R = \frac{1}{n-1}\sum_{i=1}^{n} \frac{x_i-\bar{x}}{s_x} \frac{y_i-\bar{y}}{s_y}$$
+onde $\bar{x}$, $\bar{y}$, ${s_x}$ e ${s_y}$ são respectivamente as médias e desvio padrão amostral das variáveis x e y.
+
+Os valores de R serão sempre entre -1 e 1. Quanto mais próximo de 1, mais forte é a correlação linear positiva entre as variáveis. E quanto mais próximo de -1, maior é a correlação linear negativa entre as mesmas. Abaixo temos a imagem que representa as duas situações: em (a) temos três casos de correlação linear positiva e em (b) temos os casos para correlação linear negativa.
+
+<div style="float:center;max-width:90%; max-height: 90%;" markdown="1"> ![](images/residuos3.png)
+</div>
+
+# 1.3.1 Coeficiente de Determinação
+
+R² ajustado
+
+# Análise de Variância
 
 Applied regresion pag 52,65-68
 Applied Linear Statistical Models 5th pag 87-97
@@ -364,7 +471,6 @@ Applied Linear Statistical Models 5th pag 87-97
   b)exemplos
   c)como fazer
   
-# R²
 
 Applied Linear Statistical Models 5th pag 98
 
@@ -398,6 +504,9 @@ Applied regression pag 58,59
 
 &nbsp;
 
+
+------
++999999999
 ## Regressão Linear Multipla
  
 ### Forma matricial
@@ -452,3 +561,5 @@ Regressão logistica(?) *openintro
 
 João L. F. Batista. Análise de Regressão Aplicada.2004. Departamento de Ciências Florestais
 ESALQ - USP
+
+http://www.leg.ufpr.br/~paulojus/embrapa/Rembrapa/Rembrapase19.html
